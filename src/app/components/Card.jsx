@@ -1,136 +1,107 @@
 import _ from "lodash";
 import React from 'react';
-import {
-  Box,
-  Image,
-  Text,
-  Badge,
-  Flex,
-  Spacer,
-  IconButton,
-  Wrap, WrapItem,
-  AspectRatio
-} from '@chakra-ui/react';
 import PropTypes from 'prop-types';
-import { FaHeart, FaPlay } from 'react-icons/fa';
+
+import { Box, Flex, Collapse } from '@chakra-ui/react';
+import { Image, AspectRatio } from '@chakra-ui/react';
+import { Text, Badge, IconButton } from '@chakra-ui/react';
+import { Wrap, WrapItem } from '@chakra-ui/react';
+import { useDisclosure } from '@chakra-ui/react';
+
+import * as icons from "react-icons/fc";
 import { FcExpand } from "react-icons/fc";
 
-import {
-  Accordion,
-  AccordionItem,
-  AccordionButton,
-  AccordionPanel,
-  AccordionIcon,
-} from '@chakra-ui/react'
+import { generateRandomString } from "app/utils";
 
 /**
- * Componente Card - Rappresenta una card stile Choc UI per un anime.
- *
- * @component
- * @example
- * return (
- *   <Card />
- * );
- *
- * @returns {JSX.Element} - Il componente Card.
+ * Card Component
+ * @param {Object} props - Component props
+ * @param {string} props.picture - URL of the image
+ * @param {Object} props.bedge - Badge information
+ * @param {string} props.bedge.content - Content of the badge
+ * @param {string} props.bedge.color - Color scheme for the badge
+ * @param {Array} props.actions - Array of action objects
+ * @param {string} props.actions.label - Label for the action
+ * @param {string} props.actions.icon - Icon for the action
+ * @param {string} props.actions.color - Color scheme for the action
+ * @param {string} props.title - Title of the card
+ * @param {Array} props.content - Array of content elements, can be string or nested elements
+ * @returns {React.Component} Card component
  */
 const Card = (props) => {
-  /**
-   * Genera un numero casuale compreso tra min e max.
-   *
-   * @param {number} min - Il valore minimo.
-   * @param {number} max - Il valore massimo.
-   * @returns {number} - Il numero casuale generato.
-   */
-  const generateRandomNumber = (min, max) =>
-    Math.floor(Math.random() * (max - min + 1) + min);
 
   /**
-   * Genera uno stato casuale per l'anime (In corso o Concluso).
-   *
-   * @returns {string} - Lo stato casuale generato.
+   * Renders action buttons
+   * @returns {Array} Array of JSX elements representing action buttons
    */
-  const generateRandomState = () =>
-    Math.random() > 0.5 ? 'In corso' : 'Concluso';
+  const Actions = () =>
+    props.actions.map(action =>
+      <IconButton
+        key={generateRandomString()}
+        icon={icons[action.icon]({ size: 30 })}
+        colorScheme={action.color}
+        aria-label={action.label}
+        mr="2"
+      />
+    );
 
-  const animeImage =
-    'https://example.com/path-to-your-anime-image.jpg'; // Sostituisci con il tuo URL dell'immagine
+  /**
+   * Renders content based on its type (simple or nested)
+   * @returns {Array} Array of JSX elements representing content
+   */
+  const Content = () => {
+    const disclosure = useDisclosure();
 
-  const randomState = generateRandomState();
-  const randomYear = generateRandomNumber(2000, 2023);
-  const randomName = `Anime ${generateRandomNumber(1, 100)}`;
-  const randomEpisodes = generateRandomNumber(1, 50);
-  const randomTags = ['Azione', 'Fantasy', 'Commedia']; // Aggiungi i tag desiderati
-
-  function assignTitle() {
-    return typeof props.title === 'string'
-      ? props.title
-      : <>
-        {props.title.content}
-        <Badge borderRadius="full" mx="2" px="2" colorScheme={props.title.suffix.color}>
-          {props.title.suffix.content}
-        </Badge>
-      </>
-  }
-
-  function assignContent() {
-    return props.content.map(content =>
-      _.isArray(content)
-        ? (<Wrap my={'4px'}>
-          <IconButton
-            icon={<FcExpand />}
-            isRound={true}
-            variant='outline'
-            colorScheme='teal'
-          />
-          {content.map(subContent => <WrapItem>{subContent}</WrapItem>)}
-        </Wrap>)
-        : (<Text my={'1px'} color="gray.500" fontSize="sm">{content}</Text>)
-    )
-  }
+    return props.content.map(content => !_.isArray(content)
+      /** SIMPLE CONTENT */
+      ? <Text my={'1px'} color="gray.500" fontSize="sm">
+        {content}
+      </Text>
+      /** NESTED CONTENT */
+      : <Flex mt={'20px'} align={"center"} flexDir={"column"}>
+        {/** BUTTON */}
+        <IconButton onClick={disclosure.onToggle} transform={disclosure.isOpen && "rotate(180deg)"}
+          icon={<FcExpand />} variant='ghost' colorScheme='teal' size='24' w={'100vh'}
+        />
+        {/** COLLAPSIBLE CONTENT */}
+        <Collapse in={disclosure.isOpen}>
+          <Wrap my={'4px'}>
+            {content.map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
+          </Wrap>
+        </Collapse>
+      </Flex>
+    );
+  };
 
   return (
-    <Box
-      maxW={'220px'}
-      maxH={'6000px'}
-      borderWidth="1px"
-      borderRadius="lg"
-      overflow="hidden"
-      // bgColor="white"
-      boxShadow="md"
-    >
+    // bgColor="white" 
+    <Box maxW={'220px'} maxH={'6000px'} borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md">
+      {/** IMAGE */}
       <AspectRatio maxW='220px' ratio={10 / 12}>
         <Image src={props.picture} alt="Anime Cover" />
       </AspectRatio>
 
-      <Flex align="center" p="2" marginTop={'-16.5rem'} marginBottom={'12.8rem'} flexDir={'row'} justifyContent={'flex-end'}>
-        <IconButton
-          icon={<FaHeart />}
-          colorScheme="red"
-          aria-label="Aggiungi ai preferiti"
-          mr="2"
-        />
-        <IconButton
-          icon={<FaPlay />}
-          colorScheme="teal"
-          aria-label="Guarda ora"
-        />
+      {/** ACTIONS */}
+      <Flex flexDir={'row'} justifyContent={'flex-end'} align="center" p="2" marginTop={'-16.5rem'} marginBottom={'12.8rem'}>
+        <Actions />
       </Flex>
 
+      {/** HEADER */}
       <Box p="4">
         <Wrap align="center" justify={'left'}>
-          {/** Badge */}
+          {/** BADGE */}
           <WrapItem>
             <Badge borderRadius="full" colorScheme={props.bedge.color}>
               {props.bedge.content}
             </Badge>
           </WrapItem>
-          {/** Title */}
+          {/** TITLE */}
           <WrapItem>{props.title}</WrapItem>
         </Wrap>
 
+        {/** CONTENT */}
         <Flex flexDir={'column'}>
-          {assignContent()}
+          <Content />
         </Flex>
       </Box>
     </Box>
@@ -138,15 +109,21 @@ const Card = (props) => {
 };
 
 Card.propTypes = {
-  picture: PropTypes.string,
-  title: PropTypes.oneOf(PropTypes.string, PropTypes.shape({
-    suffix: PropTypes.shape({
-      content: PropTypes.string,
-      color: PropTypes.string,
-    }),
-    content: PropTypes.string
-  })),
-  content: PropTypes.arrayOf(PropTypes.string)
+  picture: PropTypes.string.isRequired,
+  bedge: PropTypes.shape({
+    content: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+  }).isRequired,
+  actions: PropTypes.arrayOf(PropTypes.shape({
+    label: PropTypes.string.isRequired,
+    icon: PropTypes.string.isRequired,
+    color: PropTypes.string.isRequired,
+  })).isRequired,
+  title: PropTypes.string.isRequired,
+  content: PropTypes.arrayOf(PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.arrayOf(PropTypes.element.isRequired).isRequired
+  ])).isRequired
 };
 
 export default Card;

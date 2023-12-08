@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from 'react';
 
-import AnimeSearchForm from 'app/components/Search';
+import SearchFormTags from 'app/components/SearchFormTags';
 import Card from 'app/components/Card';
 import db from 'data/db.json';
 
@@ -29,10 +29,34 @@ function Newest() {
     }
 
     return (<>
-        {/** Display the search form for anime */}
-        <AnimeSearchForm />
+        {/** Display the Card component */}
+        <SearchFormTags
+            categories={[
+                {
+                    label: 'Stato',
+                    values: [
+                        { label: 'Concluso', value: 'FINISHED' },
+                        { label: 'In Corso', value: 'ONGOING' },
+                        { label: 'In Arrivo', value: 'UPCOMING' },
+                        { label: 'Sconosciuto', value: 'UNKNOWN' },
+                    ]
+                },
+                {
+                    label: 'Tipologia',
+                    values: [
+                        { label: 'TV', value: 'TV' },
+                        { label: 'Movie', value: 'MOVIE' },
+                        { label: 'OVA', value: 'OVA' },
+                        { label: 'ONA', value: 'ONA' },
+                        { label: 'Special', value: 'SPECIAL' },
+                        { label: 'Sconosciuto', value: 'UNKNOWN' },
+                    ]
+
+                },
+            ]}
+            onSearch={() => { }}
+        />
         <Wrap spacing='30px' justify='center'>
-            {/** Display the Card component */}
             {db.data.filter(anime => (
                 anime.animeSeason.year === 2023
                 && anime.status === "ONGOING"
@@ -48,14 +72,14 @@ function Newest() {
                             color: parseStatus(anime.status)
                         }}
                         actions={[
-                            { id: '', label: '', icon: '' },
-                            { id: '', label: '', icon: '' }
+                            { color: 'cyan', label: 'Da guardare', icon: 'FcClock' },
+                            { color: 'red', label: 'Aggiungi ai preferiti', icon: 'FcLike' }
                         ]}
                         title={anime.title}
                         content={[
                             `Anno: ${parseSeason(anime.animeSeason.season)} ${anime.animeSeason.year}`,
                             `${anime.type} - Episodi: ${anime.episodes}`,
-                            anime.tags.map((tag, index) => (<Badge key={index} mr="1" colorScheme="teal">{tag}</Badge>))
+                            anime.tags.map((tag, index) => <Badge key={index} mr="1" colorScheme="teal">{tag}</Badge>)
                         ]}
                     />
                 </WrapItem>
