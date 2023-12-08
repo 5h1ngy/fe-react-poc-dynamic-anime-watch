@@ -6,7 +6,9 @@ import {
     Wrap, WrapItem, Divider, Tag,
     TagLabel, TagCloseButton,
     IconButton,
-    useDisclosure
+    useDisclosure,
+    Center,
+    Heading
 } from '@chakra-ui/react';
 
 import { AddIcon } from '@chakra-ui/icons';
@@ -42,25 +44,31 @@ const SearchForm = ({ categories, onSearch }) => {
         });
     };
 
-    return (<Flex alignItems="center" flexDir={"column"}>
-        {categories.map((category) => <>
-            {category.label}
-            <Wrap spacing="2">
-                {category.values.map((type) => <>
-                    <WrapItem key={generateRandomString()}>
-                        <Tag
-                            size="lg"
-                            variant="subtle"
-                            colorScheme={selectedType === type ? 'teal' : 'gray'}
-                            onClick={() => handleTagClick(type)}
-                        >
-                            <TagLeftIcon boxSize='12px' as={AddIcon} onClick={() => console.log('asd')} />
-                            <TagLabel>{type.label}</TagLabel>
-                        </Tag>
-                    </WrapItem>
-                </>)}
-            </Wrap>
-        </>)}
+    return (<Flex alignItems="center" flexDir={"row"} justifyContent={'center'}>
+        {categories.map((category) =>
+            <Box my={'6px'} mx={'2%'}>
+                <Center mb={'6px'}>
+                    <Heading as='h3' size='lg'>
+                        {category.label}
+                    </Heading>
+                </Center>
+                <Wrap spacing="2">
+                    {category.values.map((type) => <>
+                        <WrapItem key={generateRandomString()}>
+                            <Tag
+                                size="lg"
+                                variant="subtle"
+                                colorScheme={selectedType === type ? 'teal' : 'gray'}
+                                onClick={() => handleTagClick(type)}
+                            >
+                                <TagLeftIcon boxSize='12px' as={AddIcon} onClick={() => console.log('asd')} />
+                                <TagLabel>{type.label}</TagLabel>
+                            </Tag>
+                        </WrapItem>
+                    </>)}
+                </Wrap>
+            </Box>
+        )}
     </Flex>);
 };
 

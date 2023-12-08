@@ -53,10 +53,22 @@ function Newest() {
                     ]
 
                 },
+                {
+                    label: 'Genere',
+                    values: [
+                        { label: 'TV', value: 'TV' },
+                        { label: 'Movie', value: 'MOVIE' },
+                        { label: 'OVA', value: 'OVA' },
+                        { label: 'ONA', value: 'ONA' },
+                        { label: 'Special', value: 'SPECIAL' },
+                        { label: 'Sconosciuto', value: 'UNKNOWN' },
+                    ]
+
+                },
             ]}
             onSearch={() => { }}
         />
-        <Wrap spacing='30px' justify='center'>
+        <Wrap mt='30px' spacing='30px' justify='center'>
             {db.data.filter(anime => (
                 anime.animeSeason.year === 2023
                 && anime.status === "ONGOING"

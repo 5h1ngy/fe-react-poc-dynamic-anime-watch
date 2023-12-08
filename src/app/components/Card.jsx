@@ -75,7 +75,7 @@ const Card = (props) => {
 
   return (
     // bgColor="white" 
-    <Box maxW={'220px'} maxH={'6000px'} borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md">
+    <Box maxW={'220px'} borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md">
       {/** IMAGE */}
       <AspectRatio maxW='220px' ratio={10 / 12}>
         <Image src={props.picture} alt="Anime Cover" />
