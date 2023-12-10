@@ -1,43 +1,13 @@
 {
     "sidebar": {
-        "logoText":"[Anime] ToWatch",
-        "items":[
-        {
-            "label": "Newest",
-            "id": "",
-            "icon": "FcAdvertising"
-        },
-        {
-            "label": "Search",
-            "id": "",
-            "icon": "FcSearch"
-        },
-        {
-            "label": "Favorites",
-            "id": "",
-            "icon": "FcLike"
-        },
-        {
-            "label": "My Anime",
-            "id": "",
-            "icon": "FcDatabase",
-            "subItems": [
-                {
-                    "label": "To Watch",
-                    "id": "",
-                    "icon": "FcTodoList"
-                },
-                {
-                    "label": "In Progress",
-                    "id": "",
-                    "icon": "FcIdea"
-                },
-                {
-                    "label": "Complete",
-                    "id": "",
-                    "icon": "FcOk"
-                }
-            ]
-        }
-    ]}
+        "behavior": "smart",
+        "logoText": "[Anime] ToWatch",
+        "items": [
+            {
+                "label": "Newest",
+                "id": "",
+                "icon": "FcAdvertising"
+            }
+        ]
+    }
 }

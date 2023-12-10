@@ -32,7 +32,11 @@ function LayoutTemplate({ router, config }) {
     return (
         <Box as="section" bg="gray.50" _dark={{ bg: "gray.700" }} minH="100vh">
             {/* Sidebar for larger screens */}
-            <Sidebar logoText={config.template.sidebar.logoText} items={config.template.sidebar.items} display={{ base: "none", md: "unset" }} />
+            {config.template.sidebar.behavior !== "smart"
+                ? <Sidebar logoText={config.template.sidebar.logoText} items={config.template.sidebar.items} display={{ base: "none", md: "unset" }} />
+                : undefined
+            }
+
 
             {/* Drawer for smaller screens */}
             <Drawer
@@ -47,39 +51,42 @@ function LayoutTemplate({ router, config }) {
             </Drawer>
 
             {/* Main content area */}
-            <Box ml={{ base: 0, md: 80 }} transition=".3s ease">
+            <Box ml={config.template.sidebar.behavior !== "smart" ? { base: 0, md: 80 } : undefined} transition=".3s ease">
                 {/* Header */}
                 <Flex
                     as="header"
-                    align="center"
-                    justify="space-between"
+                    flexDir={"row"}
+                    align="flex-end"
+                    alignItems={"center"}
+                    justify="end"
                     w="full"
+                    py="0"
                     px="4"
                     bg="white"
                     _dark={{ bg: "gray.800" }}
                     borderBottomWidth="1px"
                     borderColor="blackAlpha.300"
-                    h="14"
+                    h="16"
                 >
-                    {/* Menu icon for smaller screens */}
-                    <IconButton
-                        aria-label="Menu"
-                        display={{ base: "inline-flex", md: "none" }}
-                        onClick={sidebarDisclosure.onOpen}
-                        icon={<FiMenu />}
-                        size="sm"
-                    />
-
                     {/* Color mode switch */}
                     <IconButton
-                        size="md"
-                        fontSize="lg"
                         aria-label={`Switch to ${text} mode`}
+                        display={{ base: "inherit" }}
                         variant="ghost"
                         color="current"
-                        ml={{ base: "0", md: "3" }}
-                        onClick={toggleMode}
+                        size="lg"
                         icon={<SwitchIcon />}
+                        onClick={toggleMode}
+                    />
+
+                    {/* Menu icon for smaller screens */}
+                    <IconButton
+                        ml={'4px'}
+                        aria-label="Menu"
+                        display={config.template.sidebar.behavior !== "smart" ? { base: "inherit", md: "none" } : undefined}
+                        size="lg"
+                        icon={<FiMenu />}
+                        onClick={sidebarDisclosure.onOpen}
                     />
                 </Flex>
 
