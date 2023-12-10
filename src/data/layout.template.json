@@ -1,6 +1,7 @@
 {
     "globals": {},
     "header": {
+        "menu": true,
         "logoText": "[Anime] ToWatch",
         "logoTextNeon": "#ff80c0",
         "breadcrumb": true,

@@ -31,7 +31,11 @@ function LayoutTemplate({ router, config }) {
         <Box {...rootStyle}>
             <Header {...config.template.header} paths={[...paths]} onToggle={sidebarDisclosure.onToggle} />
             <Flex  {...bodyStyle}>
-                <Sidebar isOpen={sidebarDisclosure.isOpen} items={config.template.sidebar.items} />
+
+                {config.template.header.menu
+                    ? <Sidebar isOpen={sidebarDisclosure.isOpen} items={config.template.sidebar.items} />
+                    : undefined
+                }
 
                 <Box
                     maxHeight={'92.4vh'}

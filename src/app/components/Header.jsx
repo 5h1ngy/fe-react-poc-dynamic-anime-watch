@@ -29,10 +29,11 @@ const headerStyle = {
  * @param {string} props.logoTextNeon - Effetto neon per il testo del logo.
  * @param {string} props.logoText - Testo del logo.
  * @param {string[]} props.paths - Array di percorsi per il breadcrumb.
+ * @param {boolean} props.menu
  * @param {function} props.onToggle - Funzione da chiamare quando l'icona del menu viene cliccata.
  * @returns {JSX.Element} - Elemento React.
  */
-function Header({ breadcrumb, breadcrumbLogoText, logoTextNeon, logoText, paths, onToggle }) {
+function Header({ breadcrumb, breadcrumbLogoText, logoTextNeon, logoText, paths, menu, onToggle }) {
 
     /**
      * Componente per il testo del logo.
@@ -67,13 +68,22 @@ function Header({ breadcrumb, breadcrumbLogoText, logoTextNeon, logoText, paths,
             <Flex flexDirection={"row"}>
 
                 {/** Icona del menu */}
-                <IconButton onClick={() => onToggle()} variant='solid' icon={<HamburgerIcon />} marginRight={'15px'} />
+                {menu ?
+                    <IconButton onClick={() => onToggle()} variant='solid' icon={<HamburgerIcon />} marginRight={'15px'} />
+                    : undefined
+                }
 
                 {/** Testo del logo come stringa */}
-                {breadcrumbLogoText ? undefined : <LogoText />}
+                {breadcrumbLogoText
+                    ? undefined
+                    : <LogoText />
+                }
 
                 {/** Breadcrumb (collegamenti ipertestuali di navigazione) */}
-                {breadcrumb ? <BreadcumbHeader /> : undefined}
+                {breadcrumb
+                    ? <BreadcumbHeader />
+                    : undefined
+                }
 
             </Flex>
             {/** Contenitore destro */}
@@ -90,6 +100,7 @@ Header.propTypes = {
     logoTextNeon: PropTypes.string,
     logoText: PropTypes.string,
     paths: PropTypes.arrayOf(PropTypes.string),
+    menu: PropTypes.bool,
     onToggle: PropTypes.func,
 }
 
@@ -99,6 +110,7 @@ Header.defaultProps = {
     logoTextNeon: '',
     logoText: '',
     paths: [],
+    menu: false,
     onToggle: undefined,
 }
 
