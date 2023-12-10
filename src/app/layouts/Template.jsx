@@ -43,6 +43,7 @@ function LayoutTemplate({ router, config }) {
                     overflowY={"scroll"}
                     borderTopLeftRadius={'20px'}
                     backgroundColor={'gray.800'}
+                    boxShadow={"0 4px 8px rgba(0, 0, 0, 0.5)"}
                 >
                     <Outlet />
                 </Box>
