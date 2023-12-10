@@ -10,7 +10,7 @@ import { useDisclosure } from '@chakra-ui/react';
 import * as icons from "react-icons/fc";
 import { FcCollapse } from "react-icons/fc";
 
-import { generateRandomString } from "app/utils";
+import { generateRandomString } from "app/shared/utils";
 
 /**
  * Componente Card per visualizzare informazioni strutturate.
@@ -39,6 +39,7 @@ const Card = (props) => {
         icon={icons[action.icon]()}
         fontSize={28}
         aria-label={action.label}
+        onClick={() => action.onClick()}
         mr="2"
       />
     );

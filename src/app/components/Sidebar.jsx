@@ -8,8 +8,8 @@ import { Collapse, useDisclosure } from "@chakra-ui/react";
 import * as icons from "react-icons/fc";
 
 
-import NeonText from "../assets/NeonText";
-import { generateRandomString } from "app/utils";
+import NeonText from "./NeonText";
+import { generateRandomString } from "app/shared/utils";
 
 const navItemStyle = {
     align: "center",

@@ -6,10 +6,10 @@ import { TagLabel, TagLeftIcon, Tag } from '@chakra-ui/react';
 import { Center, Heading, useDisclosure } from '@chakra-ui/react';
 import { AddIcon, CloseIcon } from '@chakra-ui/icons';
 
-import { generateRandomString } from 'app/utils';
+import { generateRandomString } from 'app/shared/utils';
 
-import NeonText from "app/assets/NeonText";
-import { randomColorScheme } from 'app/assets/utils';
+import NeonText from "app/components/NeonText";
+import { randomColorScheme } from 'app/shared/utils';
 
 /**
  * Componente principale per il form di ricerca.
@@ -44,22 +44,20 @@ const SearchForm = ({ tags }) => {
         );
     }
 
-    return (<Flex flexDir={"row"} w={'100%'} justifyContent={'center'}>
-        {tags.map((tag) => (
-            <Flex alignItems="center" mx={'1%'} flexDir={"column"} justifyContent={'center'}>
-                <Center mb={'6px'}>
-                    <Heading as='h3' size='lg'><NeonText text={tag.label} colorScheme={tag.labelColor} /></Heading>
-                </Center>
-                <Wrap spacing="2">
-                    {tag.values.map((type) => (
-                        <WrapItem key={generateRandomString()}>
-                            <TagItem onClick={type.onClick} active={type.active} value={type.value}>{type.label}</TagItem>
-                        </WrapItem>
-                    ))}
-                </Wrap>
-            </Flex>
-        ))}
-    </Flex>);
+    return (tags.map((tag) => (
+        <Flex alignItems="center" mx={"1%"} flexDir={"column"} justifyContent={'center'}>
+            <Center mb={'6px'}>
+                <Heading as='h3' size='lg'><NeonText text={tag.label} colorScheme={tag.labelColor} /></Heading>
+            </Center>
+            <Wrap spacing="2">
+                {tag.values.map((type) => (
+                    <WrapItem key={generateRandomString()}>
+                        <TagItem onClick={type.onClick} active={type.active} value={type.value}>{type.label}</TagItem>
+                    </WrapItem>
+                ))}
+            </Wrap>
+        </Flex>
+    )));
 };
 
 SearchForm.propTypes = {

@@ -1,53 +1,68 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Box, Button, Flex, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
 
-const Pagination = ({ totalItems, itemsPerPage, currentPage, onPageChange }) => {
-    const totalPages = Math.ceil(totalItems / itemsPerPage);
+const Pagination = ({ totalItems, size, offset, onPageChange }) => {
+    const inputRef = useRef(null);
 
-    const handlePageChange = (newPage) => {
-        if (newPage >= 1 && newPage <= totalPages) {
-            onPageChange(newPage);
+    const totalPages = Math.ceil(totalItems / size);
+
+    function handlePageChange(offset) {
+        if (offset >= 1 && offset <= totalPages) {
+            onPageChange(offset);
         }
     };
 
     return (
-        <Flex justify="space-between" align="center" mt="4">
-            <Text>
-                Pagina {currentPage} di {totalPages} - Totale elementi: {totalItems}
-            </Text>
-            <Box mx={3}>
+        <Flex justify="space-between" align="center" w={'100%'} mx={'1%'}>
+            <Flex flexDirection={'row'} alignItems={'center'}>
+
+                <Flex flexDirection={'row'} alignItems={'center'}>
+                    <Text mr={4}>pagina {offset} di {totalPages}</Text>
+                </Flex>
+
+                <Flex flexDirection={'row'} alignItems={'center'}>
+                    <InputGroup>
+                        <Input
+                            ref={inputRef}
+                            type="number"
+                            min="1"
+                            max={totalPages}
+                            value={offset}
+                            onChange={(event) => handlePageChange(Number(event.target.value))}
+                            onFocus={() => {
+                                inputRef.current.focus();
+                                inputRef.current.select();
+                            }}
+                        />
+                        <InputRightElement>
+                            <Button h={'100%'} onClick={() => handlePageChange(offset)}>
+                                Vai
+                            </Button>
+                        </InputRightElement>
+                    </InputGroup>
+                </Flex>
+
+            </Flex>
+            <Flex Flex flexDirection={'row'} alignItems={'center'}>
+                <Text mr={4}>
+                    {totalItems} risultati
+                </Text>
                 <Button
                     variant="outline"
-                    isDisabled={currentPage === 1}
-                    onClick={() => handlePageChange(currentPage - 1)}
+                    isDisabled={offset === 1}
+                    onClick={() => handlePageChange(offset - 1)}
                 >
                     Precedente
                 </Button>
                 <Button
                     ml="2"
                     variant="outline"
-                    isDisabled={currentPage === totalPages}
-                    onClick={() => handlePageChange(currentPage + 1)}
+                    isDisabled={offset === totalPages}
+                    onClick={() => handlePageChange(offset + 1)}
                 >
                     Successiva
                 </Button>
-            </Box>
-            <Box>
-                <InputGroup>
-                    <Input
-                        type="number"
-                        min="1"
-                        max={totalPages}
-                        value={currentPage}
-                        onChange={(e) => handlePageChange(Number(e.target.value))}
-                    />
-                    <InputRightElement>
-                        <Button h={'100%'} onClick={() => handlePageChange(currentPage)}>
-                            Vai
-                        </Button>
-                    </InputRightElement>
-                </InputGroup>
-            </Box>
+            </Flex>
         </Flex>
     );
 };
