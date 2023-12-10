@@ -74,9 +74,11 @@ const Card = (props) => {
         <Image src={props.picture} alt="Anime Cover" />
       </AspectRatio>
 
-      <Flex flexDir={'row'} justifyContent={'flex-end'} align="center" p="2" marginTop={'-16.5rem'} marginBottom={'12.8rem'}>
-        <Actions />
-      </Flex>
+      {props.actions &&
+        <Flex flexDir={'row'} justifyContent={'flex-end'} align="center" p="2" marginTop={'-16.5rem'} marginBottom={'12.8rem'}>
+          <Actions />
+        </Flex>
+      }
 
       <Box p="4">
         <Wrap align="center" justify={'left'}>
@@ -106,12 +108,16 @@ Card.propTypes = {
     label: PropTypes.string.isRequired,
     icon: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
-  })).isRequired,
+  })),
   title: PropTypes.string.isRequired,
   content: PropTypes.arrayOf(PropTypes.oneOfType([
     PropTypes.string.isRequired,
     PropTypes.arrayOf(PropTypes.element.isRequired).isRequired
   ])).isRequired
 };
+
+Card.defaultProps = {
+  actions: undefined
+}
 
 export default Card;

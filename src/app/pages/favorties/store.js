@@ -7,11 +7,11 @@ const initialState = {
 }
 
 const favorites = createSlice({
-    name: 'route/favorites',
+    name: 'routes/favorites',
     initialState,
     reducers: (create) => ({
-        setFavorites: create.reducer((state, action) => {
-            if (_.cloneDeep(state.favorites).filter(anime => _.isEqual(anime, action.payload)).length !== 0) {
+        addFavorites: create.reducer((state, action) => {
+            if (_.cloneDeep(state.favorites).filter(anime => _.isEqual(anime, action.payload)).length === 0) {
                 state.favorites.push(action.payload)
             }
         }),
@@ -23,6 +23,6 @@ const favorites = createSlice({
 
 const { actions, reducer } = favorites;
 
-export const { setFavorites, setPagination } = actions;
+export const { addFavorites, setPagination } = actions;
 
 export default { reducer, name: favorites.name };

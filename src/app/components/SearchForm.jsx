@@ -8,7 +8,7 @@ import { AddIcon, CloseIcon } from '@chakra-ui/icons';
 
 import { generateRandomString } from 'app/shared/utils';
 
-import NeonText from "app/components/NeonText";
+import TypographyNeon from "app/components/TypographyNeon";
 import { randomColorScheme } from 'app/shared/utils';
 
 /**
@@ -47,7 +47,7 @@ const SearchForm = ({ tags }) => {
     return (tags.map((tag) => (
         <Flex alignItems="center" mx={"1%"} flexDir={"column"} justifyContent={'center'}>
             <Center mb={'6px'}>
-                <Heading as='h3' size='lg'><NeonText text={tag.label} colorScheme={tag.labelColor} /></Heading>
+                <Heading as='h3' size='lg'><TypographyNeon text={tag.label} colorScheme={tag.labelColor} /></Heading>
             </Center>
             <Wrap spacing="2">
                 {tag.values.map((type) => (

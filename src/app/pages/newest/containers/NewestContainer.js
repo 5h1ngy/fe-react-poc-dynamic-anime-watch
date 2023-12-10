@@ -2,7 +2,8 @@ import { connect } from "react-redux";
 
 import { getStatuses, getTypes, getNewest } from "../store.js"
 import { setPagination as setPaginationNewest, setStatusSelected, setTypeSelected } from "../store.js"
-import { setFavorites, setPagination as setPaginationFavorites } from "../../favorties/store.js"
+import { addFavorites, setPagination as setPaginationFavorites } from "../../favorties/store.js"
+import { addToWatch, setPagination as setPaginationToWatch } from "../../toWatch/store.js"
 
 import Newest from "./Newest";
 
@@ -19,8 +20,10 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
     setPaginationNewest: (payload) => dispatch(setPaginationNewest(payload)),
     setStatusSelected: (payload) => dispatch(setStatusSelected(payload)),
     setTypeSelected: (payload) => dispatch(setTypeSelected(payload)),
-    setFavorites: (payload) => dispatch(setFavorites(payload)),
+    addFavorites: (payload) => dispatch(addFavorites(payload)),
     setPaginationFavorites: (payload) => dispatch(setPaginationFavorites(payload)),
+    addToWatch: (payload) => dispatch(addToWatch(payload)),
+    setPaginationToWatch: (payload) => dispatch(setPaginationToWatch(payload)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps, (stateProps, dispatchProps, ownProps) => ({

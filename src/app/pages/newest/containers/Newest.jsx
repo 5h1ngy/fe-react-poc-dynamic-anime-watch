@@ -8,9 +8,10 @@ import Card from 'app/components/Card';
 import Pagination from "app/components/Pagination";
 
 import { randomColorScheme } from "app/shared/utils";
-import { parseStatusColor, parseStatusLabel, parseSeason, parseTypesLabel } from "../shared/utils";
+import { parseStatusColor, parseStatusLabel, parseSeason, parseTypesLabel } from "app/shared/utils";
 
 function Newest(props) {
+    
     useEffect(() => {
         props.actions.getStatuses();
         props.actions.getTypes();
@@ -80,8 +81,8 @@ function Newest(props) {
                             color: parseStatusColor(anime.status)
                         }}
                         actions={[
-                            { label: 'Da guardare', icon: 'FcInspection', onClick: () => console.log('Da guardare', anime) },
-                            { label: 'Aggiungi ai preferiti', icon: 'FcLike', onClick: () => console.log('Aggiungi ai preferiti', anime) },
+                            { label: 'Da guardare', icon: 'FcInspection', onClick: () => props.actions.addFavorites(anime) },
+                            { label: 'Aggiungi ai preferiti', icon: 'FcLike', onClick: () => props.actions.addToWatch(anime) },
                         ]}
                         title={anime.title}
                         content={[

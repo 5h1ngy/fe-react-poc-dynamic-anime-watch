@@ -1,0 +1,47 @@
+{
+    "globals": {},
+    "header": {
+        "logoText": "[Anime] ToWatch",
+        "logoTextNeon": "#ff80c0",
+        "breadcrumb": true,
+        "breadcrumbLogoText": true
+    },
+    "sidebar": {
+        "behavior": "smart",
+        "logoText": "[Anime] ToWatch",
+        "items": [
+            {
+                "label": "Newest",
+                "id": "",
+                "icon": "FcAdvertising"
+            },
+            {
+                "label": "Favorites",
+                "id": "",
+                "icon": "FcLike"
+            },
+            {
+                "label": "To Watch",
+                "id": "",
+                "icon": "FcTodoList",
+                "subItems": [
+                    {
+                        "label": "In Progress",
+                        "id": "",
+                        "icon": "FcIdea"
+                    },
+                    {
+                        "label": "Complete",
+                        "id": "",
+                        "icon": "FcOk"
+                    }
+                ]
+            },
+            {
+                "label": "Search",
+                "id": "",
+                "icon": "FcSearch"
+            }
+        ]
+    }
+}
