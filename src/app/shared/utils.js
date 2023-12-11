@@ -51,8 +51,8 @@ export function randomColorScheme() {
     return _.sample(["red", "orange", "yellow", "green", "purple", "pink"])
 }
 
-export function parseStatusColor(status) {
-    switch (status) {
+export function parseStatusColor(statuses) {
+    switch (statuses) {
         case "FINISHED": return 'green'
         case "ONGOING": return 'yellow'
         case "UPCOMING": return 'orange'
@@ -61,8 +61,8 @@ export function parseStatusColor(status) {
     }
 }
 
-export function parseStatusLabel(status) {
-    switch (status) {
+export function parseStatusLabel(statuses) {
+    switch (statuses) {
         case "FINISHED": return 'concluso'
         case "ONGOING": return 'in corso'
         case "UPCOMING": return 'in arrivo'

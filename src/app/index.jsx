@@ -3,8 +3,8 @@ import { RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
 import { ChakraProvider } from '@chakra-ui/react'
 
-import routes from 'app/pages/routes.js';
-import store from 'app/store.js';
+import routes from 'app/pages';
+import store from 'app/store';
 
 const App = () => (
   <ChakraProvider>

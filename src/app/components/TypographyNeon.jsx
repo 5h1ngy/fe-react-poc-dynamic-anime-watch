@@ -4,25 +4,25 @@ import { keyframes } from '@emotion/react'; // Importa keyframes da @emotion/rea
 
 import '@fontsource/orbitron/600.css';
 
-const flickerAnimation = (neonColor) => keyframes`
-  to {
-    text-shadow: 0 0 5px ${neonColor}, 0 0 10px ${neonColor}, 0 0 15px ${neonColor};
-  }
-`;
+const TypographyNeon = ({ text, colorScheme: color }) => {
+  const neonColor = color || '#ff80c0'; // Colore magenta neon
 
-const TypographyNeon = ({ text, colorScheme }) => {
-  const neonColor = colorScheme || '#ff80c0'; // Colore magenta neon
+  const flickerAnimation = keyframes(`
+    to { 
+      text-shadow: 0 0 5px ${neonColor}, 0 0 10px ${neonColor}, 0 0 15px ${neonColor};
+    }
+  `);
 
-  // Stile inline con animazione definita
-  const neonTextStyle = {
+  const styleProps = {
     fontSize: '1.5rem',
     fontFamily: "'Orbitron', sans-serif",
     color: neonColor,
     textShadow: `0 0 1px ${neonColor}, 0 0 2px ${neonColor}, 0 0 3px ${neonColor}`,
-  };
+    animation: `${flickerAnimation} 1.5s infinite alternate`,
+  }
 
   return (
-    <Box as="span" className="neon-text" style={neonTextStyle} animation={`${flickerAnimation(neonColor)} 1.5s infinite alternate`}>
+    <Box {...styleProps} >
       {text}
     </Box>
   );
