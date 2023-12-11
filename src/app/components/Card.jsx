@@ -56,20 +56,27 @@ const Card = (props) => {
         {content}
       </Text>
       : <Flex mt={'20px'} align={"center"} flexDir={"column"}>
-        <IconButton onClick={disclosure.onToggle} transform={disclosure.isOpen && "rotate(180deg)"}
+
+        <Wrap my={'4px'}>
+          {content.slice(0, 4).map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
+        </Wrap>
+
+        {!disclosure.isOpen && <IconButton onClick={disclosure.onToggle} transform={disclosure.isOpen && "rotate(180deg)"}
           icon={<FcCollapse />} variant='ghost' colorScheme='teal' size='24' w={'100vh'}
-        />
+        />}
+
         <Collapse in={disclosure.isOpen}>
           <Wrap my={'4px'}>
-            {content.map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
+            {content.slice(4, content.length - 1).map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
           </Wrap>
         </Collapse>
+
       </Flex>
     );
   };
 
   return (
-    <Box maxW={'220px'} borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md">
+    <Box boxShadow={"0 4px 8px rgba(0, 0, 0, 0.5)"} maxW={'220px'} borderWidth="1px" borderRadius="lg" overflow="hidden">
       <AspectRatio maxW='220px' ratio={10 / 12}>
         <Image src={props.picture} alt="Anime Cover" />
       </AspectRatio>

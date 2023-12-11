@@ -13,7 +13,7 @@ const Pagination = ({ totalItems, size, offset, onPageChange }) => {
     };
 
     return (
-        <Flex justify="space-between" align="center" w={'100%'} mx={'1%'}>
+        <Flex justify="space-between" align="center" w={'100%'} marginY={'15px'}>
             <Flex flexDirection={'row'} alignItems={'center'}>
 
                 <Flex flexDirection={'row'} alignItems={'center'}>

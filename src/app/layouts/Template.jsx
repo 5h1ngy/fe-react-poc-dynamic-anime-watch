@@ -10,7 +10,7 @@ import Header from 'app/components/Header'
 import Sidebar from 'app/components/Sidebar'
 
 const rootStyle = {
-    width: '100wh',
+    width: '100vw',
     height: '100vh',
 }
 
@@ -19,13 +19,13 @@ const bodyStyle = {
     flexDirection: "row",
 }
 
-const bodyContentStyle = (isOpen, menu) => ({
+const bodyContentStyle = (isOpen, menu, isLargerThan600) => ({
     borderTopRadius: '30px',
     backgroundColor: 'gray.800',
-    marginLeft: menu
+    marginLeft: menu && isLargerThan600
         ? isOpen ? '260px' : '80px'
-        : '10px',
-    marginRight: '10px',
+        : '3vw',
+    marginRight: '3vw',
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
 })
 
@@ -57,7 +57,7 @@ function LayoutTemplate({ router, config }) {
                     : undefined
                 }
 
-                <Box {...bodyContentStyle(sidebarDisclosure.isOpen, config.template.header.menu)}>
+                <Box {...bodyContentStyle(sidebarDisclosure.isOpen, config.template.header.menu, isLargerThan600)}>
                     <Outlet />
                 </Box>
             </Flex >

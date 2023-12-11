@@ -49,22 +49,18 @@ function Newest({ actions, state }) {
         });
     }, [actions, pagination.offset, filters.statuses, filters.types, pagination.size]);
 
-    return (<Flex direction={"column"} alignItems={"center"}>
+    return (<Flex direction={"column"} alignItems={"center"} padding={"30px"}>
 
-        <Flex flexDir={"row"} mt={'1%'} w={'100%'} justifyContent={'center'}>
-            <SearchForm tags={searchFormTags} />
-        </Flex>
+        <SearchForm tags={searchFormTags} />
 
-        <Flex flexDir={"row"} mt={'4%'} w={'80%'} justifyContent={'center'}>
-            <Pagination
-                totalItems={pagination.total}
-                size={pagination.size}
-                offset={pagination.offset}
-                onPageChange={(offset) => actions.setPaginationNewest({ total: pagination.total, size: pagination.size, offset })}
-            />
-        </Flex>
+        <Pagination
+            totalItems={pagination.total}
+            size={pagination.size}
+            offset={pagination.offset}
+            onPageChange={(offset) => actions.setPaginationNewest({ total: pagination.total, size: pagination.size, offset })}
+        />
 
-        <Wrap mt='30px' spacing='30px' justify='center'>
+        <Wrap marginY={'15px'} spacing='30px' justify='center'>
             {newest.map(anime =>
                 <WrapItem>
                     <Card
@@ -88,14 +84,12 @@ function Newest({ actions, state }) {
             )}
         </Wrap>
 
-        <Flex flexDir={"row"} mt={'4%'} w={'80%'} justifyContent={'center'}>
-            <Pagination
-                totalItems={pagination.total}
-                size={pagination.size}
-                offset={pagination.offset}
-                onPageChange={(offset) => actions.setPaginationNewest({ total: pagination.total, size: pagination.size, offset })}
-            />
-        </Flex>
+        <Pagination
+            totalItems={pagination.total}
+            size={pagination.size}
+            offset={pagination.offset}
+            onPageChange={(offset) => actions.setPaginationNewest({ total: pagination.total, size: pagination.size, offset })}
+        />
     </Flex>)
 }
 
