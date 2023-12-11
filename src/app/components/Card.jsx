@@ -8,7 +8,7 @@ import { Text, Badge, IconButton } from '@chakra-ui/react';
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 import * as icons from "react-icons/fc";
-import { FcCollapse } from "react-icons/fc";
+import { FcUp, FcDown } from "react-icons/fc";
 
 import { generateRandomString } from "app/shared/utils";
 
@@ -58,18 +58,23 @@ const Card = (props) => {
       : <Flex mt={'20px'} align={"center"} flexDir={"column"}>
 
         <Wrap my={'4px'}>
-          {content.slice(0, 4).map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
+          {content.slice(0, 1).map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
+          {content.slice(2, content.length - 1).length != 0 && <IconButton
+            onClick={disclosure.onToggle}
+            icon={disclosure.isOpen ? <FcUp /> : <FcDown />}
+            variant='ghost'
+            colorScheme='teal'
+            size={'16px'}
+          />}
         </Wrap>
 
-        {!disclosure.isOpen && <IconButton onClick={disclosure.onToggle} transform={disclosure.isOpen && "rotate(180deg)"}
-          icon={<FcCollapse />} variant='ghost' colorScheme='teal' size='24' w={'100vh'}
-        />}
 
-        <Collapse in={disclosure.isOpen}>
-          <Wrap my={'4px'}>
-            {content.slice(4, content.length - 1).map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
-          </Wrap>
-        </Collapse>
+        {content.slice(2, content.length - 1).length != 0 &&
+          <Collapse in={disclosure.isOpen}>
+            <Wrap my={'4px'}>
+              {content.slice(2, content.length - 1).map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
+            </Wrap>
+          </Collapse>}
 
       </Flex>
     );
@@ -77,7 +82,7 @@ const Card = (props) => {
 
   return (
     <Box boxShadow={"0 4px 8px rgba(0, 0, 0, 0.5)"} maxW={'220px'} borderWidth="1px" borderRadius="lg" overflow="hidden">
-      <AspectRatio maxW='220px' ratio={10 / 12}>
+      <AspectRatio w='220px' ratio={10 / 12}>
         <Image src={props.picture} alt="Anime Cover" />
       </AspectRatio>
 
