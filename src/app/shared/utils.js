@@ -57,7 +57,7 @@ export function parseStatusColor(statuses) {
         case "ONGOING": return 'yellow'
         case "UPCOMING": return 'orange'
         case "UNKNOWN": return 'black'
-        default: throw new Error('parseStatusColor no matching')
+        default: return statuses
     }
 }
 
@@ -67,7 +67,7 @@ export function parseStatusLabel(statuses) {
         case "ONGOING": return 'in corso'
         case "UPCOMING": return 'in arrivo'
         case "UNKNOWN": return 'sconosciuto'
-        default: throw new Error('parseStatusLabel no matching')
+        default: return statuses
     }
 }
 
@@ -78,7 +78,7 @@ export function parseSeason(season) {
         case "FALL": return 'autunno'
         case "WINTER": return 'inverno'
         case "UNDEFINED": return 'sconosciuto'
-        default: throw new Error('parseSeason no matching')
+        default: return season
     }
 }
 
@@ -90,7 +90,7 @@ export function parseTypesLabel(type) {
         case "ONA": return 'ONA'
         case "SPECIAL": return 'Speciale'
         case "UNKNOWN": return 'sconosciuto'
-        default: throw new Error('parseTypesLabel no matching')
+        default: return type
     }
 }
 
