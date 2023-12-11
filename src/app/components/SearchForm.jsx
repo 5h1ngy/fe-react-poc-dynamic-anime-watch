@@ -58,7 +58,7 @@ const SearchForm = ({ tags }) => {
             {tags.map((tag) => (
                 <WrapItem key={generateRandomString()} flexDirection={'column'} alignItems="center" alignContent={'center'} justifyContent={'center'}>
                     <Center mb={'6px'}>
-                        <Heading as='h3' size='lg'><TypographyNeon text={tag.label} colorScheme={tag.labelColor} /></Heading>
+                        <Heading as='h3' size='lg'><TypographyNeon text={tag.label} color={tag.labelColor} /></Heading>
                     </Center>
                     <Wrap spacing="10px" marginTop={'10px'}>
                         {tag.values.map((type) => (
