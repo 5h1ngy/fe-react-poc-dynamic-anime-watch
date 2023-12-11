@@ -2,45 +2,46 @@
     "globals": {},
     "header": {
         "menu": true,
+        "logo": false,
+        "logoNeon": true,
+        "logoTextNeonColor": "#ff80c0",
         "logoText": "[Anime] ToWatch",
-        "logoTextNeon": "#ff80c0",
         "breadcrumb": true,
         "breadcrumbLogoText": true
     },
     "sidebar": {
-        "behavior": "smart",
-        "logoText": "[Anime] ToWatch",
+        "itemsNeon": true,
         "items": [
             {
+                "path": "",
                 "label": "Newest",
-                "id": "",
                 "icon": "FcAdvertising"
             },
             {
+                "path": "",
                 "label": "Favorites",
-                "id": "",
                 "icon": "FcLike"
             },
             {
+                "path": "",
                 "label": "To Watch",
-                "id": "",
                 "icon": "FcTodoList",
                 "subItems": [
                     {
                         "label": "In Progress",
-                        "id": "",
+                        "path": "",
                         "icon": "FcIdea"
                     },
                     {
                         "label": "Complete",
-                        "id": "",
+                        "path": "",
                         "icon": "FcOk"
                     }
                 ]
             },
             {
+                "path": "",
                 "label": "Search",
-                "id": "",
                 "icon": "FcSearch"
             }
         ]

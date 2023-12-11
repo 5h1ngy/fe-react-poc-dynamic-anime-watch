@@ -4,13 +4,14 @@ import PropTypes from "prop-types";
 
 import { IconButton, Flex } from "@chakra-ui/react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
-import { ChevronRightIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { Heading } from '@chakra-ui/react';
+import { ChevronRightIcon, HamburgerIcon, ArrowLeftIcon } from "@chakra-ui/icons";
 
 import { translatePathNames } from "app/shared/utils";
 import TypographyNeon from "app/components/TypographyNeon";
 
 /**
- * Stile del componente Header.
+ * Styles for the header component.
  */
 const headerStyle = {
     width: '100wh',
@@ -22,40 +23,88 @@ const headerStyle = {
 }
 
 /**
- * Componente funzionale Header.
- * @param {object} props - Proprietà del componente.
- * @param {boolean} props.breadcrumb - Flag per visualizzare il breadcrumb.
- * @param {boolean} props.breadcrumbLogoText - Flag per visualizzare il testo del logo nel breadcrumb.
- * @param {string} props.logoTextNeon - Effetto neon per il testo del logo.
- * @param {string} props.logoText - Testo del logo.
- * @param {string[]} props.paths - Array di percorsi per il breadcrumb.
- * @param {boolean} props.menu
- * @param {function} props.onToggle - Funzione da chiamare quando l'icona del menu viene cliccata.
- * @returns {JSX.Element} - Elemento React.
+ * Styles for the left container within the header.
  */
-function Header({ breadcrumb, breadcrumbLogoText, logoTextNeon, logoText, paths, menu, onToggle }) {
+const containerLeftStyle = {
+    flexDirection: "row",
+    alignItems: "center",
+}
 
+/**
+ * Styles for the right container within the header.
+ */
+const containerRiughtStyle = {
+    flexDirection: "row",
+}
+
+/**
+ * Styles for the menu icon button.
+ */
+const menuIconButtonStyle = {
+    position: "fixed",
+}
+
+/**
+ * Function that defines the neon text style.
+ *
+ * @param {boolean} menu - Whether the menu is open.
+ * @param {string} logoTextNeonColor - Color of the neon text.
+ * @returns {Object} - Styles for the neon text.
+ */
+const neonTextStyle = (menu, logoTextNeonColor) => ({
+    marginLeft: menu ? "100px" : "",
+    color: logoTextNeonColor,
+})
+
+/**
+ * Header component that displays a navigation bar.
+ *
+ * @param {Object} props - Component properties.
+ * @param {string[]} props.paths - Array of paths for breadcrumb navigation.
+ * @param {Function} props.onToggle - Function to toggle the menu.
+ * @param {boolean} props.isOpen - Boolean indicating whether the menu is open.
+ * @param {boolean} props.menu - Boolean indicating whether to display the menu icon.
+ * @param {boolean} props.logo - Boolean indicating whether to display the logo.
+ * @param {boolean} props.logoNeon - Boolean indicating whether the logo text should have a neon effect.
+ * @param {string} props.logoTextNeonColor - Color for the neon text.
+ * @param {string} props.logoText - Text to be displayed as the logo.
+ * @param {boolean} props.breadcrumb - Boolean indicating whether to display the breadcrumb navigation.
+ * @param {boolean} props.breadcrumbLogoText - Boolean indicating whether the logo text should be part of the breadcrumb.
+ * @returns {JSX.Element} - Header component.
+ */
+function Header({
+    paths,
+    onToggle,
+    isOpen,
+    menu,
+    logo,
+    logoNeon,
+    logoTextNeonColor,
+    logoText,
+    breadcrumb,
+    breadcrumbLogoText,
+}) {
     /**
-     * Componente per il testo del logo.
-     * @returns {JSX.Element} - Elemento React.
+     * Component for the logo text.
+     *
+     * @returns {JSX.Element} - React element.
      */
     const LogoText = () =>
-        logoTextNeon
-            ? <TypographyNeon text={logoText} colorScheme={logoTextNeon} />
-            : logoText
+        logoNeon
+            ? <TypographyNeon  {...neonTextStyle(menu, logoTextNeonColor)} text={logoText} />
+            : <Heading as='h4' size='md' >{logoText}</Heading>
 
     /**
-     * Componente per il breadcrumb.
-     * @returns {JSX.Element} - Elemento React.
+     * Component for the breadcrumb navigation.
+     *
+     * @returns {JSX.Element} - React element.
      */
     const BreadcumbHeader = () =>
         <Breadcrumb separator={<ChevronRightIcon />}>
             {paths.map((path, index, paths) => (
                 <BreadcrumbItem isCurrentPage={index === paths.length - 1} key={index}>
                     <BreadcrumbLink href={path !== '' ? `${paths.slice(0, index).join('/')}` : '/'}>
-                        {/** Logo come percorso nel breadcrumb */}
                         {index === 0 && breadcrumbLogoText ? <LogoText /> : undefined}
-                        {/** Altri percorsi */}
                         {index !== 0 ? translatePathNames(path) : undefined}
                     </BreadcrumbLink>
                 </BreadcrumbItem>
@@ -64,54 +113,49 @@ function Header({ breadcrumb, breadcrumbLogoText, logoTextNeon, logoText, paths,
 
     return (
         <Flex {...headerStyle}>
-            {/** Contenitore sinistro */}
-            <Flex flexDirection={"row"}>
-
-                {/** Icona del menu */}
-                {menu ?
-                    <IconButton onClick={() => onToggle()} variant='solid' icon={<HamburgerIcon />} marginRight={'15px'} />
-                    : undefined
+            <Flex {...containerLeftStyle}>
+                {menu &&
+                    <IconButton
+                        {...menuIconButtonStyle}
+                        icon={isOpen ? <ArrowLeftIcon va /> : <HamburgerIcon />}
+                        variant='solid'
+                        onClick={() => onToggle()}
+                    />
                 }
-
-                {/** Testo del logo come stringa */}
-                {breadcrumbLogoText
-                    ? undefined
-                    : <LogoText />
-                }
-
-                {/** Breadcrumb (collegamenti ipertestuali di navigazione) */}
-                {breadcrumb
-                    ? <BreadcumbHeader />
-                    : undefined
-                }
-
+                {logo && <LogoText />}
+                {breadcrumb && <BreadcumbHeader />}
             </Flex>
-            {/** Contenitore destro */}
-            <Flex flexDirection={"row"}>
-
+            <Flex {...containerRiughtStyle}>
+                {/* Additional content for the right container */}
             </Flex>
         </Flex>
     );
 }
 
 Header.propTypes = {
+    paths: PropTypes.arrayOf(PropTypes.string),
+    onToggle: PropTypes.func,
+    isOpen: PropTypes.func,
+    menu: PropTypes.bool,
+    logo: PropTypes.bool,
+    logoNeon: PropTypes.bool,
+    logoTextNeonColor: PropTypes.string,
+    logoText: PropTypes.string,
     breadcrumb: PropTypes.bool,
     breadcrumbLogoText: PropTypes.bool,
-    logoTextNeon: PropTypes.string,
-    logoText: PropTypes.string,
-    paths: PropTypes.arrayOf(PropTypes.string),
-    menu: PropTypes.bool,
-    onToggle: PropTypes.func,
 }
 
 Header.defaultProps = {
-    breadcrumb: false,
-    breadcrumbLogoText: false,
-    logoTextNeon: '',
-    logoText: '',
     paths: [],
-    menu: false,
     onToggle: undefined,
+    isOpen: false,
+    menu: false,
+    logo: true,
+    logoNeon: true,
+    logoTextNeonColor: "#ff80c0",
+    logoText: "[Anime] ToWatch",
+    breadcrumb: true,
+    breadcrumbLogoText: false,
 }
 
 export default Header;

@@ -2,164 +2,60 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Box, Flex, Center, Icon, IconButton } from "@chakra-ui/react";
+import { Box, Flex, Center, Icon, IconButton, Button } from "@chakra-ui/react";
 import { Collapse, useDisclosure } from "@chakra-ui/react";
+import { ArrowDownIcon } from "@chakra-ui/icons"
 import * as icons from "react-icons/fc";
 
 import TypographyNeon from "./TypographyNeon";
 import { generateRandomString } from "app/shared/utils";
 
-//#region Sidebar (old)
-
-// const navItemStyle = {
-//     align: "center",
-//     px: "4",
-//     mx: "2",
-//     rounded: "md",
-//     py: "4",
-//     cursor: "pointer",
-//     color: "whiteAlpha.700",
-//     _hover: { bg: "blackAlpha.300", color: "whiteAlpha.900" },
-//     role: "group",
-//     fontWeight: "semibold",
-//     transition: ".15s ease",
-// };
-
-// const activeNavItemStyle = {
-//     color: "white",
-//     bg: "brand.500",
-// };
-
-// function NavItem(props) {
-//     const { icon, children, isActive, ...rest } = props;
-
-//     return (
-//         <Flex
-//             {...navItemStyle}
-//             {...(isActive ? activeNavItemStyle : {})}
-//             {...rest}
-//         >
-//             {icon && (
-//                 <Icon
-//                     mr="2"
-//                     boxSize="7"
-//                     _groupHover={{ color: "gray.300" }}
-//                     as={icon}
-//                 />
-//             )}
-//             {children}
-//         </Flex>
-//     );
-// }
-
-// function Sidebar(props) {
-//     const { items, logoText, activeItemId } = props;
-//     const disclosure = useDisclosure();
-//     const integrations = items.map(
-//         (item) => (_.has(item, 'subItems') ? _.cloneDeep(disclosure) : undefined)
-//     );
-
-//     function assignNavItem() {
-//         return items.map((item, itemIndex) => (
-//             !_.has(item, 'subItems') ? (
-//                 <NavItem
-//                     key={generateRandomString(8)}
-//                     icon={icons[item.icon]}
-//                     isActive={item.id === activeItemId}
-//                 >
-//                     {item.label}
-//                 </NavItem>
-//             ) : (
-//                 <>
-//                     <NavItem
-//                         key={generateRandomString(8)}
-//                         icon={icons[item.icon]}
-//                         onClick={integrations[itemIndex].onToggle}
-//                         isActive={item.id === activeItemId}
-//                     >
-//                         {item.label}
-//                         <Icon
-//                             as={icons['FcExpand']}
-//                             ml="auto"
-//                             transform={integrations[itemIndex].isOpen && "rotate(180deg)"}
-//                         />
-//                     </NavItem>
-
-//                     <Collapse in={integrations[itemIndex].isOpen}>
-//                         {item.subItems.map((subItem) => (
-//                             <NavItem
-//                                 key={generateRandomString(8)}
-//                                 pl="12"
-//                                 py="3"
-//                                 icon={icons[subItem.icon]}
-//                                 isActive={subItem.id === activeItemId}
-//                             >
-//                                 {subItem.label}
-//                             </NavItem>
-//                         ))}
-//                     </Collapse>
-//                 </>
-//             )
-//         ));
-//     }
-
-//     return (
-//         <Box
-//             as="nav"
-//             pos="fixed"
-//             top="0"
-//             left="0"
-//             zIndex="sticky"
-//             h="full"
-//             pb="10"
-//             overflowX="hidden"
-//             overflowY="auto"
-//             bg="brand.600"
-//             borderColor="blackAlpha.300"
-//             borderRightWidth="1px"
-//             w="80"
-//             {...props}
-//         >
-//             <Flex px="4" py="5" align="center">
-//                 <TypographyNeon text={logoText} colorScheme="#ff80c0" />
-//             </Flex>
-//             <Flex
-//                 direction="column"
-//                 as="nav"
-//                 fontSize="sm"
-//                 color="gray.600"
-//                 aria-label="Main Navigation"
-//             >
-//                 {assignNavItem()}
-//             </Flex>
-//         </Box>
-//     );
-// }
-
-// export default Sidebar;
-
-//#endregion
-
 const sidebarStyle = {
 
 }
 
-function Sidebar({ isOpen, items }) {
+function Sidebar({ isOpen, items, display }) {
     return <Flex {...sidebarStyle}
-        minWidth={isOpen ? '300px' : '80px'}
-        minHeight={'92.4vh'}
-        maxHeight={'92.4vh'}
+        position={"fixed"}
+        width={isOpen ? "260px" : '80px'}
         padding={'8px'}
-
+        alignItems={isOpen ? 'flex-start' : 'center'}
         flexDirection={"column"}
+
     >
         {items.map(item =>
-            <IconButton
-                marginLeft={'12px'}
-                marginTop={'10px'}
-                boxSize={'40px'}
-                icon={icons[item.icon]({ size: '16px' })}
-            />
+            isOpen
+                ? !_.has(item, 'subItems')
+                    ? <Button
+                        padding={'13px'}
+                        margin={'6px 0 6px 9px'}
+                        borderRadius={'10px'}
+                        variant='ghost'
+                        leftIcon={icons[item.icon]({ size: '16px' })}
+                        minWidth={'226px'}
+                        justifyContent={'flex-start'}
+                    >
+                        {item.label}
+                    </Button>
+                    : <Button
+                        padding={'13px'}
+                        margin={'6px 0 6px 9px'}
+                        borderRadius={'10px'}
+                        variant='ghost'
+                        leftIcon={icons[item.icon]({ size: '16px' })}
+                        rightIcon={<ArrowDownIcon marginLeft={'80px'} />}
+                        minWidth={'226px'}
+                        justifyContent={'flex-start'}
+                        backgroundColor={'gray.800'}
+                    >
+                        {item.label}
+                    </Button>
+                : <IconButton
+                    padding={'5px'}
+                    margin={'5px 0 5px 0'}
+                    boxSize={'40px'}
+                    icon={icons[item.icon]({ size: '16px' })}
+                />
         )}
     </Flex>
 }
