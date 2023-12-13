@@ -2,10 +2,10 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 
-import { IconButton, Flex } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react';
-import { ChevronRightIcon, HamburgerIcon, ArrowLeftIcon } from "@chakra-ui/icons";
+import { ChevronRightIcon } from "@chakra-ui/icons";
 
 import { translatePathNames } from "app/shared/utils";
 import TypographyNeon from "app/components/TypographyNeon";
@@ -14,10 +14,9 @@ import TypographyNeon from "app/components/TypographyNeon";
  * Styles for the header component.
  */
 const headerStyle = {
-    width: '100wh',
-    height: '70px',
-    backgroundColor: 'blackAlpha.400',
-    padding: '0 20px 0 20px',
+    width: '100%',
+    backgroundColor: 'gray.900',
+    padding: ' 15px 0 15px 40px',
     justifyContent: "space-between",
     alignItems: "center",
 }
@@ -33,15 +32,8 @@ const containerLeftStyle = {
 /**
  * Styles for the right container within the header.
  */
-const containerRiughtStyle = {
+const containerRightStyle = {
     flexDirection: "row",
-}
-
-/**
- * Styles for the menu icon button.
- */
-const menuIconButtonStyle = {
-    position: "fixed",
 }
 
 /**
@@ -51,8 +43,7 @@ const menuIconButtonStyle = {
  * @param {string} logoTextNeonColor - Color of the neon text.
  * @returns {Object} - Styles for the neon text.
  */
-const neonTextStyle = (menu, logoTextNeonColor) => ({
-    marginLeft: menu ? "100px" : "",
+const neonTextStyle = (logoTextNeonColor) => ({
     color: logoTextNeonColor,
 })
 
@@ -61,9 +52,6 @@ const neonTextStyle = (menu, logoTextNeonColor) => ({
  *
  * @param {Object} props - Component properties.
  * @param {string[]} props.paths - Array of paths for breadcrumb navigation.
- * @param {Function} props.onToggle - Function to toggle the menu.
- * @param {boolean} props.isOpen - Boolean indicating whether the menu is open.
- * @param {boolean} props.menu - Boolean indicating whether to display the menu icon.
  * @param {boolean} props.logo - Boolean indicating whether to display the logo.
  * @param {boolean} props.logoNeon - Boolean indicating whether the logo text should have a neon effect.
  * @param {string} props.logoTextNeonColor - Color for the neon text.
@@ -74,9 +62,6 @@ const neonTextStyle = (menu, logoTextNeonColor) => ({
  */
 function Header({
     paths,
-    onToggle,
-    isOpen,
-    menu,
     logo,
     logoNeon,
     logoTextNeonColor,
@@ -91,7 +76,7 @@ function Header({
      */
     const LogoText = () =>
         logoNeon
-            ? <TypographyNeon  {...neonTextStyle(menu, logoTextNeonColor)} text={logoText} />
+            ? <TypographyNeon  {...neonTextStyle(logoTextNeonColor)} text={logoText} />
             : <Heading as='h4' size='md' >{logoText}</Heading>
 
     /**
@@ -103,7 +88,10 @@ function Header({
         <Breadcrumb separator={<ChevronRightIcon />}>
             {paths.map((path, index, paths) => (
                 <BreadcrumbItem isCurrentPage={index === paths.length - 1} key={index}>
-                    <BreadcrumbLink href={path !== '' ? `${paths.slice(0, index).join('/')}` : '/'}>
+                    <BreadcrumbLink href={path !== ''
+                        ? `${paths.slice(0, index).join('/')}`
+                        : '/'
+                    }>
                         {index === 0 && breadcrumbLogoText ? <LogoText /> : undefined}
                         {index !== 0 ? translatePathNames(path) : undefined}
                     </BreadcrumbLink>
@@ -114,18 +102,11 @@ function Header({
     return (
         <Flex {...headerStyle}>
             <Flex {...containerLeftStyle}>
-                {menu &&
-                    <IconButton
-                        {...menuIconButtonStyle}
-                        icon={isOpen ? <ArrowLeftIcon va /> : <HamburgerIcon />}
-                        variant='solid'
-                        onClick={() => onToggle()}
-                    />
-                }
+
                 {logo && <LogoText />}
                 {breadcrumb && <BreadcumbHeader />}
             </Flex>
-            <Flex {...containerRiughtStyle}>
+            <Flex {...containerRightStyle}>
                 {/* Additional content for the right container */}
             </Flex>
         </Flex>
@@ -134,9 +115,6 @@ function Header({
 
 Header.propTypes = {
     paths: PropTypes.arrayOf(PropTypes.string),
-    onToggle: PropTypes.func,
-    isOpen: PropTypes.func,
-    menu: PropTypes.bool,
     logo: PropTypes.bool,
     logoNeon: PropTypes.bool,
     logoTextNeonColor: PropTypes.string,
@@ -147,14 +125,11 @@ Header.propTypes = {
 
 Header.defaultProps = {
     paths: [],
-    onToggle: undefined,
-    isOpen: false,
-    menu: false,
-    logo: true,
-    logoNeon: true,
-    logoTextNeonColor: "#ff80c0",
-    logoText: "[Anime] ToWatch",
-    breadcrumb: true,
+    logo: false,
+    logoNeon: false,
+    logoTextNeonColor: undefined,
+    logoText: undefined,
+    breadcrumb: false,
     breadcrumbLogoText: false,
 }
 
