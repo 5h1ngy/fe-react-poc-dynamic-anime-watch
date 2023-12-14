@@ -6,6 +6,9 @@ import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
 import { Heading } from '@chakra-ui/react';
 import { ChevronRightIcon } from "@chakra-ui/icons";
 
+import { IconButton, useColorMode } from "@chakra-ui/react";
+import { MoonIcon, SunIcon } from "@chakra-ui/icons";
+
 import { translatePathNames } from "app/shared/utils";
 import TypographyNeon from "app/components/TypographyNeon";
 
@@ -15,7 +18,7 @@ import TypographyNeon from "app/components/TypographyNeon";
 const headerStyle = {
     width: '100%',
     backgroundColor: 'gray.900',
-    padding: ' 15px 0 15px 40px',
+    padding: ' 15px 40px 15px 40px',
     justifyContent: "space-between",
     alignItems: "center",
 }
@@ -33,6 +36,7 @@ const containerLeftStyle = {
  */
 const containerRightStyle = {
     flexDirection: "row",
+    alignItems: "center",
 }
 
 /**
@@ -65,6 +69,8 @@ function Header({
     breadcrumb,
     breadcrumbLogoText,
 }) {
+    const { colorMode, toggleColorMode } = useColorMode()
+
     /**
      * Componente LogoText.
      * @returns {React.Element} Componente LogoText.
@@ -73,7 +79,6 @@ function Header({
         logoNeon
             ? <TypographyNeon  {...neonTextStyle(logoTextNeonColor)} text={logoText} />
             : <Heading as='h4' size='md' >{logoText}</Heading>
-
     /**
      * Componente BreadcumbHeader.
      * @returns {React.Element} Componente BreadcumbHeader.
@@ -101,6 +106,14 @@ function Header({
                 {breadcrumb && <BreadcumbHeader />}
             </Flex>
             <Flex {...containerRightStyle}>
+                {/* Aggiungi il pulsante del tema */}
+                <IconButton
+                    icon={colorMode !== 'dark' ? <SunIcon /> : <MoonIcon />}
+                    aria-label="Toggle Theme"
+                    onClick={toggleColorMode}
+                    variant="ghost"
+                    size="md"
+                />
                 {/* Contenuto aggiuntivo per il contenitore destro */}
             </Flex>
         </Flex>
