@@ -45,7 +45,7 @@ function LayoutTemplate({ router, config }) {
     useEffect(() => {
         // Chiude la Sidebar se le dimensioni superano i 600px
         if (sidebarDisclosure.isOpen) sidebarDisclosure.onToggle()
-    }, [isLargerThan600, sidebarDisclosure])
+    }, [isLargerThan600])
 
     // Restituisce l'elemento principale del layout
     return (
