@@ -34,12 +34,7 @@ export const getTypes = createAsyncThunk(
 
 export const getNewest = createAsyncThunk(
     'routes/newest/GET.Newest',
-    async (payload) => {
-        return await api.getNewest(payload.offset, payload.size, {
-            statuses: payload.statuses,
-            type: payload.type
-        })
-    }
+    async (payload) => await api.getNewest(payload.offset, payload.size, payload.type, payload.statuses)
 )
 
 const store = createSlice({

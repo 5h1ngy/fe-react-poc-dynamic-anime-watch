@@ -3,9 +3,9 @@ import React, { useEffect } from 'react';
 
 import { Badge, Flex, Wrap, WrapItem } from '@chakra-ui/react';
 
-import SearchForm from 'app/components/SearchForm';
-import Card from 'app/components/Card';
-import Pagination from "app/components/Pagination";
+import SearchForm from 'app/components/SearchForm.todo';
+import Card from 'app/components/Card/Card';
+import Pagination from "app/components/Pagination.todo";
 
 import { randomColorScheme } from "app/shared/utils";
 import { parseStatusColor, parseStatusLabel, parseSeason, parseTypesLabel } from "app/shared/utils";
@@ -20,7 +20,7 @@ function Newest({ actions, state }) {
             values: statuses.map(value => ({
                 label: parseStatusLabel(value),
                 value: value,
-                onClick: (payload) => actions.setStatus(payload),
+                onClick: (payload) => actions.newest.setStatus(payload),
                 active: _.includes(filters.statuses, value)
             }))
         },
@@ -30,22 +30,27 @@ function Newest({ actions, state }) {
             values: types.map(type => ({
                 label: parseTypesLabel(type),
                 value: type,
-                onClick: (payload) => actions.setType(payload),
+                onClick: (payload) => actions.newest.setType(payload),
                 active: _.includes(filters.types, type)
             }))
         }
     ];
 
     useEffect(() => {
-        actions.getStatuses();
-        actions.getTypes();
-        actions.getNewest(pagination.offset, pagination.size);
+        actions.newest.getStatuses();
+        actions.newest.getTypes();
+        actions.newest.getNewest({
+            ...pagination,
+            statuses: undefined,
+            types: undefined
+        });
     }, [actions, pagination.offset, pagination.size]);
 
     useEffect(() => {
-        actions.getNewest(pagination.offset, pagination.size, {
+        actions.newest.getNewest({
+            ...pagination,
             statuses: !_.isEmpty(filters.statuses) ? filters.statuses : undefined,
-            type: !_.isEmpty(filters.types) ? filters.types : undefined
+            types: !_.isEmpty(filters.types) ? filters.types : undefined
         });
     }, [actions, pagination.offset, filters.statuses, filters.types, pagination.size]);
 
@@ -57,7 +62,7 @@ function Newest({ actions, state }) {
             totalItems={pagination.total}
             size={pagination.size}
             offset={pagination.offset}
-            onPageChange={(offset) => actions.setPaginationNewest({ total: pagination.total, size: pagination.size, offset })}
+            onPageChange={(offset) => actions.newest.setPagination({ total: pagination.total, size: pagination.size, offset })}
         />
 
         <Wrap marginY={'15px'} spacing='30px' justify='center'>
@@ -65,13 +70,13 @@ function Newest({ actions, state }) {
                 <WrapItem>
                     <Card
                         picture={anime.picture}
-                        bedge={{
+                        badge={{
                             content: parseStatusLabel(anime.statuses),
                             color: parseStatusColor(anime.statuses)
                         }}
                         actions={[
-                            { label: 'Da guardare', icon: 'FcInspection', onClick: () => actions.addFavorites(anime) },
-                            { label: 'Aggiungi ai preferiti', icon: 'FcLike', onClick: () => actions.addToWatch(anime) },
+                            { label: 'Da guardare', icon: 'FcInspection', onClick: () => actions.favorites.addFavorites(anime) },
+                            { label: 'Aggiungi ai preferiti', icon: 'FcLike', onClick: () => actions.toWatch.addToWatch(anime) },
                         ]}
                         title={anime.title}
                         content={[
@@ -88,7 +93,7 @@ function Newest({ actions, state }) {
             totalItems={pagination.total}
             size={pagination.size}
             offset={pagination.offset}
-            onPageChange={(offset) => actions.setPaginationNewest({ total: pagination.total, size: pagination.size, offset })}
+            onPageChange={(offset) => actions.newest.setPagination({ total: pagination.total, size: pagination.size, offset })}
         />
     </Flex>)
 }

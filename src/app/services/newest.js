@@ -17,14 +17,14 @@ export function getTypes() {
     })
 }
 
-export function getNewest(offset, size, params = { type: undefined, statuses: undefined }) {
+export function getNewest(offset, size, type = undefined, statuses = undefined) {
     function buildFilter(anime) {
-        if (params.type && params.statuses) {
-            return _.includes(params.type, anime.type) || _.includes(params.statuses, anime.statuses)
-        } if (params.type) {
-            return _.includes(params.type, anime.type)
-        } if (params.statuses) {
-            return _.includes(params.statuses, anime.statuses)
+        if (type && statuses) {
+            return _.includes(type, anime.type) || _.includes(statuses, anime.statuses)
+        } if (type) {
+            return _.includes(type, anime.type)
+        } if (statuses) {
+            return _.includes(statuses, anime.statuses)
         }
         return anime
 
