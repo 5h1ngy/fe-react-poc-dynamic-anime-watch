@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { Box, Button, Flex, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
+import React, { useRef } from 'react';
+import { Button, Flex, Input, InputGroup, InputRightElement, Text } from '@chakra-ui/react';
 
 const Pagination = ({ totalItems, size, offset, onPageChange }) => {
     const inputRef = useRef(null);

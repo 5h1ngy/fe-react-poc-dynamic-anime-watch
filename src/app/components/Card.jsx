@@ -59,7 +59,7 @@ const Card = (props) => {
 
         <Wrap my={'4px'}>
           {content.slice(0, 1).map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}
-          {content.slice(2, content.length - 1).length != 0 && <IconButton
+          {content.slice(2, content.length - 1).length !== 0 && <IconButton
             onClick={disclosure.onToggle}
             icon={disclosure.isOpen ? <FcUp /> : <FcDown />}
             variant='ghost'
@@ -69,7 +69,7 @@ const Card = (props) => {
         </Wrap>
 
 
-        {content.slice(2, content.length - 1).length != 0 &&
+        {content.slice(2, content.length - 1).length !== 0 &&
           <Collapse in={disclosure.isOpen}>
             <Wrap my={'4px'}>
               {content.slice(2, content.length - 1).map(subContent => <WrapItem key={generateRandomString()}>{subContent}</WrapItem>)}

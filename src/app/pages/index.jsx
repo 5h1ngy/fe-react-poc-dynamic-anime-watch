@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 
-import template from 'data/layout.template.jsonc';
+import template from 'data/layout.template';
 import Template from 'app/layouts/Template';
 
 import newest from './newest';

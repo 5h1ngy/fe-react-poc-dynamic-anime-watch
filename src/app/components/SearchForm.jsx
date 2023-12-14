@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Flex, Wrap, WrapItem, useBreakpointValue } from '@chakra-ui/react';
+import { Wrap, WrapItem, useBreakpointValue } from '@chakra-ui/react';
 import { TagLabel, TagLeftIcon, Tag } from '@chakra-ui/react';
-import { Center, Heading, useDisclosure } from '@chakra-ui/react';
+import { Center, Heading } from '@chakra-ui/react';
 import { AddIcon, CloseIcon } from '@chakra-ui/icons';
 
 import { generateRandomString } from 'app/shared/utils';

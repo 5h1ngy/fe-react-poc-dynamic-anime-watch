@@ -1,5 +1,4 @@
 // Import delle librerie e componenti necessari
-import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
@@ -46,7 +45,7 @@ function LayoutTemplate({ router, config }) {
     useEffect(() => {
         // Chiude la Sidebar se le dimensioni superano i 600px
         if (sidebarDisclosure.isOpen) sidebarDisclosure.onToggle()
-    }, [isLargerThan600])
+    }, [isLargerThan600, sidebarDisclosure])
 
     // Restituisce l'elemento principale del layout
     return (

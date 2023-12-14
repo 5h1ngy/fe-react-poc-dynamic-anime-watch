@@ -1,4 +1,4 @@
-{
+export default {
     // Configurazione per l'header della pagina
     "header": {
         // Indica se visualizzare il logo nell'header
