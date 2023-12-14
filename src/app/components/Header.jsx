@@ -11,7 +11,7 @@ import { translatePathNames } from "app/shared/utils";
 import TypographyNeon from "app/components/TypographyNeon";
 
 /**
- * Styles for the header component.
+ * Stili dell'header.
  */
 const headerStyle = {
     width: '100%',
@@ -22,7 +22,7 @@ const headerStyle = {
 }
 
 /**
- * Styles for the left container within the header.
+ * Stili del contenitore sinistro dell'header.
  */
 const containerLeftStyle = {
     flexDirection: "row",
@@ -30,35 +30,32 @@ const containerLeftStyle = {
 }
 
 /**
- * Styles for the right container within the header.
+ * Stili del contenitore destro dell'header.
  */
 const containerRightStyle = {
     flexDirection: "row",
 }
 
 /**
- * Function that defines the neon text style.
- *
- * @param {boolean} menu - Whether the menu is open.
- * @param {string} logoTextNeonColor - Color of the neon text.
- * @returns {Object} - Styles for the neon text.
+ * Stili del testo neon.
+ * @param {string} logoTextNeonColor - Colore del testo neon.
+ * @returns {Object} Stili del testo neon.
  */
 const neonTextStyle = (logoTextNeonColor) => ({
     color: logoTextNeonColor,
 })
 
 /**
- * Header component that displays a navigation bar.
- *
- * @param {Object} props - Component properties.
- * @param {string[]} props.paths - Array of paths for breadcrumb navigation.
- * @param {boolean} props.logo - Boolean indicating whether to display the logo.
- * @param {boolean} props.logoNeon - Boolean indicating whether the logo text should have a neon effect.
- * @param {string} props.logoTextNeonColor - Color for the neon text.
- * @param {string} props.logoText - Text to be displayed as the logo.
- * @param {boolean} props.breadcrumb - Boolean indicating whether to display the breadcrumb navigation.
- * @param {boolean} props.breadcrumbLogoText - Boolean indicating whether the logo text should be part of the breadcrumb.
- * @returns {JSX.Element} - Header component.
+ * Componente Header.
+ * @param {Object} props - Proprietà dell'header.
+ * @param {Array} props.paths - Percorsi per la breadcrumb.
+ * @param {boolean} props.logo - Indica se visualizzare il logo.
+ * @param {boolean} props.logoNeon - Indica se il testo del logo deve avere effetto neon.
+ * @param {string} props.logoTextNeonColor - Colore del testo neon del logo.
+ * @param {string} props.logoText - Testo del logo.
+ * @param {boolean} props.breadcrumb - Indica se visualizzare la breadcrumb.
+ * @param {boolean} props.breadcrumbLogoText - Indica se visualizzare il testo del logo nella breadcrumb.
+ * @returns {React.Element} Componente Header.
  */
 function Header({
     paths,
@@ -70,9 +67,8 @@ function Header({
     breadcrumbLogoText,
 }) {
     /**
-     * Component for the logo text.
-     *
-     * @returns {JSX.Element} - React element.
+     * Componente LogoText.
+     * @returns {React.Element} Componente LogoText.
      */
     const LogoText = () =>
         logoNeon
@@ -80,9 +76,8 @@ function Header({
             : <Heading as='h4' size='md' >{logoText}</Heading>
 
     /**
-     * Component for the breadcrumb navigation.
-     *
-     * @returns {JSX.Element} - React element.
+     * Componente BreadcumbHeader.
+     * @returns {React.Element} Componente BreadcumbHeader.
      */
     const BreadcumbHeader = () =>
         <Breadcrumb separator={<ChevronRightIcon />}>
@@ -107,12 +102,13 @@ function Header({
                 {breadcrumb && <BreadcumbHeader />}
             </Flex>
             <Flex {...containerRightStyle}>
-                {/* Additional content for the right container */}
+                {/* Contenuto aggiuntivo per il contenitore destro */}
             </Flex>
         </Flex>
     );
 }
 
+// Proprietà di Header con relative tipizzazioni.
 Header.propTypes = {
     paths: PropTypes.arrayOf(PropTypes.string),
     logo: PropTypes.bool,
@@ -123,6 +119,7 @@ Header.propTypes = {
     breadcrumbLogoText: PropTypes.bool,
 }
 
+// Valori predefiniti per le proprietà di Header.
 Header.defaultProps = {
     paths: [],
     logo: false,
