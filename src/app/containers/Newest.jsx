@@ -75,8 +75,8 @@ function Newest({ actions, state }) {
                             color: parseStatusColor(anime.statuses)
                         }}
                         actions={[
-                            { label: 'Da guardare', icon: 'FcInspection', onClick: () => actions.favorites.addFavorites(anime) },
-                            { label: 'Aggiungi ai preferiti', icon: 'FcLike', onClick: () => actions.toWatch.addToWatch(anime) },
+                            { label: 'Da guardare', icon: 'FcLike', onClick: () => actions.favorites.addFavorites(anime) },
+                            { label: 'Aggiungi ai preferiti', icon: 'FcInspection', onClick: () => actions.toWatch.addToWatch(anime) },
                         ]}
                         title={anime.title}
                         content={[
