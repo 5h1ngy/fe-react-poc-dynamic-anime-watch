@@ -4,6 +4,7 @@ import template from 'data/layout.template';
 import Template from 'app/layouts/Template';
 
 import newest from './newest';
+import favorites from './favorites';
 
 const routes = [
     {
@@ -14,6 +15,7 @@ const routes = [
         loader: () => ({ template }),
         children: [
             newest,
+            favorites,
         ]
     }
 ];

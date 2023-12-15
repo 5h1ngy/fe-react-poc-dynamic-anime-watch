@@ -1,3 +1,13 @@
+# route-favorites
+
+no items page
+
+loading system view
+
+card expansion
+
+local storage save
+
 # Todo
 
 refactor cards
