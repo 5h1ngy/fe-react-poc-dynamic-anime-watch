@@ -24,14 +24,14 @@ export default {
         "items": [
             {
                 // Percorso associato all'elemento
-                "path": "",
+                "path": "/newest",
                 // Etichetta dell'elemento
                 "label": "Newest",
                 // Icona associata all'elemento (FcAdvertising)
                 "icon": "FcAdvertising"
             },
             {
-                "path": "",
+                "path": "/favorites",
                 "label": "Favorites",
                 "icon": "FcLike"
             },

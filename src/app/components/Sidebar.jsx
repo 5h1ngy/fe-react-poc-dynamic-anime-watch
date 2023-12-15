@@ -6,6 +6,8 @@ import { Flex, IconButton, Button } from "@chakra-ui/react";
 import { HamburgerIcon, ArrowLeftIcon } from "@chakra-ui/icons";
 import * as icons from "react-icons/fc";
 
+import { useNavigate } from "react-router-dom";
+
 /**
  * Stili del sidebar in base alla sua apertura.
  * @param {boolean} isOpen - Indica se la barra laterale è aperta o chiusa.
@@ -54,6 +56,7 @@ const containerItemStyle = (isOpen, enable) => ({
  * @returns {React.Element} Componente della barra laterale.
  */
 function Sidebar({ onToggle, isOpen, expanse, items }) {
+    const navigate = useNavigate();
 
     /**
      * Icona del menu per aprire/chiusa la barra laterale.
@@ -90,16 +93,16 @@ function Sidebar({ onToggle, isOpen, expanse, items }) {
 
             return <ContainerItems enable={_.has(item, 'subItems')} key={item.label}>
                 {isOpen
-                    ? <Button {...itemStyle(<Icon size={'16px'} />)}>{item.label}</Button>
-                    : <IconButton icon={<Icon size={'16px'} />} />
+                    ? <Button {...itemStyle(<Icon size={'16px'} />)} onClick={() => navigate(item.path)}>{item.label}</Button>
+                    : <IconButton icon={<Icon size={'16px'} />} onClick={() => navigate(item.path)} />
                 }
 
                 {_.get(item, 'subItems', []).map(subItem => {
                     const SubIcon = icons[subItem.icon];
 
                     return isOpen
-                        ? <Button {...itemStyle(<SubIcon size={'16px'} />)} key={subItem.label}>{subItem.label}</Button>
-                        : <IconButton icon={<SubIcon size={'16px'} />} key={subItem.label} />;
+                        ? <Button {...itemStyle(<SubIcon size={'16px'} />)} key={subItem.label} onClick={() => navigate(item.path)}>{subItem.label}</Button>
+                        : <IconButton icon={<SubIcon size={'16px'} />} key={subItem.label} onClick={() => navigate(item.path)} />;
                 })}
             </ContainerItems>;
         });
