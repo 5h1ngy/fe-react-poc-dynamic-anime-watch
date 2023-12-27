@@ -4,7 +4,7 @@ import axios from 'axios';
 export async function getStatuses() {
     try {
         const response = await axios({
-            url: `http://${process.env.REACT_APP_API}/newest/statuses`,
+            url: `${process.env.REACT_APP_API}/newest/statuses`,
             method: 'GET',
             withCredentials: false,
         })
@@ -18,7 +18,7 @@ export async function getStatuses() {
 export async function getTypes() {
     try {
         const response = await axios({
-            url: `http://${process.env.REACT_APP_API}/newest/types`,
+            url: `${process.env.REACT_APP_API}/newest/types`,
             method: 'GET',
             withCredentials: false,
         })
@@ -32,7 +32,7 @@ export async function getTypes() {
 export async function getNewest(offset, size, types = [], statuses = []) {
     try {
         const response = await axios({
-            url: `http://${process.env.REACT_APP_API}/newest`,
+            url: `${process.env.REACT_APP_API}/newest`,
             method: 'GET',
             withCredentials: false,
             params: {
