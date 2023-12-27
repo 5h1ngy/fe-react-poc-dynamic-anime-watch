@@ -1,8 +1,12 @@
 import _ from 'lodash';
 import { createSlice } from "@reduxjs/toolkit";
 
+const favoritesContent = localStorage.getItem('favorites_content');
+
 const initialState = {
-    favorites: [],
+    favorites: favoritesContent !== null
+        ? JSON.parse(favoritesContent)
+        : [],
     pagination: { size: 50, offset: 1, total: 0 }
 }
 
@@ -10,19 +14,28 @@ const store = createSlice({
     name: 'routes/favorites',
     initialState,
     reducers: (create) => ({
-        addFavorites: create.reducer((state, action) => {
-            if (_.cloneDeep(state.favorites).filter(anime => _.isEqual(anime, action.payload)).length === 0) {
-                state.favorites.push(action.payload)
+        addFavorite: create.reducer((state, action) => {
+            if (_.cloneDeep(state.favorites).filter(anime => _.isEqual(anime, action.payload.anime)).length === 0) {
+                state.favorites.push(action.payload.anime)
+                action.payload.callback(true)
+            } else {
+                action.payload.callback(false)
             }
         }),
+        removeFavorite: create.reducer((state, action) => {
+            state.favorites = _.cloneDeep(state.favorites)
+                .filter(anime => !_.isEqual(anime, action.payload.anime));
+
+            action.payload.callback(true)
+        }),
         setPagination: create.reducer((state, action) => {
-            state.pagination = { ...action.payload }
+            state.pagination = { ...action.payload.anime }
         }),
     })
 });
 
 const { actions, reducer } = store;
 
-export const { addFavorites, setPagination } = actions;
+export const { addFavorite, removeFavorite, setPagination } = actions;
 
 export default { reducer, name: store.name };

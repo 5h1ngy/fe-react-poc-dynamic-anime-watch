@@ -6,14 +6,14 @@ const initialState = {
     statuses: [],
     types: [],
     newest: [],
-    filters: {
-        statuses: [],
-        types: [],
-    },
     loading: {
         statuses: false,
         types: false,
         newest: false,
+    },
+    searchForm: {
+        statuses: [],
+        types: [],
     },
     pagination: {
         size: 50,
@@ -34,7 +34,7 @@ export const getTypes = createAsyncThunk(
 
 export const getNewest = createAsyncThunk(
     'routes/newest/GET.Newest',
-    async (payload) => await api.getNewest(payload.offset, payload.size, payload.type, payload.statuses)
+    async (payload) => await api.getNewest(payload.offset, payload.size, payload.types, payload.statuses)
 )
 
 const store = createSlice({
@@ -42,17 +42,17 @@ const store = createSlice({
     initialState,
     reducers: (create) => ({
         setStatus: create.reducer((state, action) => {
-            if (!_.includes(state.filters.statuses, action.payload)) {
-                state.filters.statuses.push(action.payload)
+            if (!_.includes(state.searchForm.statuses, action.payload)) {
+                state.searchForm.statuses.push(action.payload)
             } else {
-                state.filters.statuses = state.filters.statuses.filter(select => select !== action.payload)
+                state.searchForm.statuses = state.searchForm.statuses.filter(select => select !== action.payload)
             }
         }),
         setType: create.reducer((state, action) => {
-            if (!_.includes(state.filters.types, action.payload)) {
-                state.filters.types.push(action.payload)
+            if (!_.includes(state.searchForm.types, action.payload)) {
+                state.searchForm.types.push(action.payload)
             } else {
-                state.filters.types = state.filters.types.filter(type => type !== action.payload)
+                state.searchForm.types = state.searchForm.types.filter(type => type !== action.payload)
             }
         }),
         setPagination: create.reducer((state, action) => {

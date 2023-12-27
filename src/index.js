@@ -4,6 +4,8 @@ import './index.css';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 
+localStorage.setItem('chakra-ui-color-mode', 'dark');
+
 /**
  * The root DOM element where the React application will be mounted.
  *
