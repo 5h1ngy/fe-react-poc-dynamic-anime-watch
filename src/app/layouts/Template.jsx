@@ -23,6 +23,7 @@ const bodyContainerStyle = {
     borderTopRadius: '30px',
     backgroundColor: 'gray.800',
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+    minHeight: '92.3vh',
 }
 
 // Funzione principale del componente
