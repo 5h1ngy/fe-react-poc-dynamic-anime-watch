@@ -99,5 +99,8 @@ export function translatePathNames(path) {
         case "newest": {
             return "Newest"
         }
+        case "favorites": {
+            return "Favorites"
+        }
     }
 }

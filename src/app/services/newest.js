@@ -1,49 +1,50 @@
 import _ from 'lodash';
-import db from 'data/db.json';
+import axios from 'axios';
 
-export function getStatuses() {
-    return new Promise((resolve, _reject) => {
-        setTimeout(() => {
-            resolve(['FINISHED', 'ONGOING', 'UPCOMING', 'UNKNOWN'])
-        }, 1000)
-    })
-}
+export async function getStatuses() {
+    try {
+        const response = await axios({
+            url: `http://${process.env.REACT_APP_API}/newest/statuses`,
+            method: 'GET',
+            withCredentials: false,
+        })
 
-export function getTypes() {
-    return new Promise((resolve, _reject) => {
-        setTimeout(() => {
-            resolve(['TV', 'MOVIE', 'OVA', 'ONA', 'SPECIAL', 'UNKNOWN'])
-        }, 1000)
-    })
-}
-
-export function getNewest(offset, size, type = undefined, statuses = undefined) {
-    function buildFilter(anime) {
-        if (type && statuses) {
-            return _.includes(type, anime.type) || _.includes(statuses, anime.statuses)
-        } if (type) {
-            return _.includes(type, anime.type)
-        } if (statuses) {
-            return _.includes(statuses, anime.statuses)
-        }
-        return anime
-
+        return response.data
+    } catch (error) {
+        console.error(error)
     }
+}
 
-    return new Promise((resolve, _reject) => {
-        setTimeout(() => {
-            resolve({
-                data: db.data
-                    .filter(anime => anime.animeSeason.year === 2023 && anime.animeSeason.season === "FALL")
-                    .filter(anime => !_.includes(anime.tags, 'hentai'))
-                    .filter(anime => buildFilter(anime))
-                    .slice((offset - 1) * size, ((offset - 1) * size) + size),
-                total: db.data
-                    .filter(anime => anime.animeSeason.year === 2023 && anime.animeSeason.season === "FALL")
-                    .filter(anime => !_.includes(anime.tags, 'hentai'))
-                    .filter(anime => buildFilter(anime))
-                    .length
-            })
-        }, 1000)
-    })
+export async function getTypes() {
+    try {
+        const response = await axios({
+            url: `http://${process.env.REACT_APP_API}/newest/types`,
+            method: 'GET',
+            withCredentials: false,
+        })
+
+        return response.data
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export async function getNewest(offset, size, types = [], statuses = []) {
+    try {
+        const response = await axios({
+            url: `http://${process.env.REACT_APP_API}/newest`,
+            method: 'GET',
+            withCredentials: false,
+            params: {
+                offset,
+                size,
+                types,
+                statuses,
+            }
+        })
+
+        return response.data
+    } catch (error) {
+        console.error(error)
+    }
 }

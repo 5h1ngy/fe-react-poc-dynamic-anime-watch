@@ -1,4 +1,4 @@
-import Newest from "app/containers/NewestContainer";
+import Newest from "app/containers/Newest";
 
 const route = {
     id: "newest",
