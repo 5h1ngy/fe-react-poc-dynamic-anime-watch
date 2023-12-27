@@ -1,6 +1,6 @@
 {
   "name": "app-react-demo-dynamic-app",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "scripts": {
     "clean": "rm -rfdv node_modules/ yarn.lock build/ .yarn/cache/",
