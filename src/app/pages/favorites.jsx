@@ -1,4 +1,4 @@
-import Favorites from "app/containers/FavoritesContainer";
+import Favorites from "app/containers/Favorites";
 
 const route = {
     id: "favorites",

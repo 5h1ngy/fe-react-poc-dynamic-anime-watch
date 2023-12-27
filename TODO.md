@@ -1,34 +1,38 @@
+# Arch fetaure
+
+- [ ] Split all graphics objects into files
+
 # route-favorites
 
-no items page
+- [x] no items page
 
-loading system view
+- [x] loading system view
 
-card expansion
+- [ ] card expansion
 
-local storage save
+- [x] local storage save (dark theme)
 
 # Todo
 
-refactor cards
+- [ ] refactor cards
 
-creare route preferiti
+- [x] creare route preferiti
 
-creare route con boards per spostare lo stato da toWatch->watching->complete
+- [ ] creare route con boards per spostare lo stato da toWatch->watching->complete
 
-creare route tabellare degli anime visti
+- [ ] creare route tabellare degli anime visti
 
-creare configurazione per i temi, piu switch tra modalita
+- [ ] creare configurazione per i temi, piu switch tra modalita
 
-creare sistema di gestione utente
+- [ ] creare sistema di gestione utente
 
-creare app mobile
+- [ ] creare app mobile
 
-splittare tutto in package
+- [ ] splittare tutto in package
 
-aggiungere gli unit test
+- [ ] aggiungere gli unit test
 
-mettere su il framework fe
+- [ ] mettere su il framework fe
 
 # App
 

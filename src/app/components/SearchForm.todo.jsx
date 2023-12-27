@@ -54,7 +54,7 @@ const SearchForm = ({ tags }) => {
     }, [breakpointDirection]);
 
     return (
-        <Wrap align={'center'} justify={'center'} marginBottom={'15px'} spacing={'20px'}>
+        <Wrap align={'center'} justify={'center'} marginBottom={'15px'} spacing={'40px'}>
             {tags.map((tag) => (
                 <WrapItem key={generateRandomString()} flexDirection={'column'} alignItems="center" alignContent={'center'} justifyContent={'center'}>
                     <Center mb={'6px'}>
