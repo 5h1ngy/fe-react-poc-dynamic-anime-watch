@@ -1,6 +1,10 @@
 # Arch fetaure
 
+- [ ] Move container Obj inside HOC directory
+
 - [ ] Split all graphics objects into files
+
+- [ ] Scalare la struttura per veere una futura implementazione dei generatori
 
 # route-favorites
 

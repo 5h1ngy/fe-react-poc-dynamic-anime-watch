@@ -7,7 +7,6 @@ const initialState = {
     favorites: favoritesContent !== null
         ? JSON.parse(favoritesContent)
         : [],
-    pagination: { size: 50, offset: 1, total: 0 }
 }
 
 const store = createSlice({
@@ -27,9 +26,6 @@ const store = createSlice({
                 .filter(anime => !_.isEqual(anime, action.payload.anime));
 
             action.payload.callback(true)
-        }),
-        setPagination: create.reducer((state, action) => {
-            state.pagination = { ...action.payload.anime }
         }),
     })
 });

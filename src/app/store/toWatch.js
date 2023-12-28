@@ -1,9 +1,12 @@
 import _ from 'lodash';
 import { createSlice } from "@reduxjs/toolkit";
 
+const toWatchContent = localStorage.getItem('toWatch_content');
+
 const initialState = {
-    toWatch: [],
-    pagination: { size: 50, offset: 1, total: 0 }
+    toWatch: toWatchContent !== null
+        ? JSON.parse(toWatchContent)
+        : [],
 }
 
 const store = createSlice({
@@ -11,18 +14,24 @@ const store = createSlice({
     initialState,
     reducers: (create) => ({
         addToWatch: create.reducer((state, action) => {
-            if (_.cloneDeep(state.toWatch).filter(anime => _.isEqual(anime, action.payload)).length === 0) {
-                state.toWatch.push(action.payload)
+            if (_.cloneDeep(state.toWatch).filter(anime => _.isEqual(anime, action.payload.anime)).length === 0) {
+                state.toWatch.push(action.payload.anime)
+                action.payload.callback(true)
+            } else {
+                action.payload.callback(false)
             }
         }),
-        setPagination: create.reducer((state, action) => {
-            state.pagination = { ...action.payload }
+        removeToWatch: create.reducer((state, action) => {
+            state.toWatch = _.cloneDeep(state.toWatch)
+                .filter(anime => !_.isEqual(anime, action.payload.anime));
+
+            action.payload.callback(true)
         }),
     })
 });
 
 const { actions, reducer } = store;
 
-export const { addToWatch, setPagination } = actions;
+export const { addToWatch, removeToWatch } = actions;
 
 export default { reducer, name: store.name };
