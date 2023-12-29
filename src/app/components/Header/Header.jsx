@@ -78,13 +78,13 @@ function Header({
             </Flex>
             <Flex {...containerRightStyle}>
                 {/* Aggiungi il pulsante del tema */}
-                <IconButton
+                {/* <IconButton
                     icon={colorMode !== 'dark' ? <SunIcon /> : <MoonIcon />}
                     aria-label="Toggle Theme"
                     onClick={toggleColorMode}
                     variant="ghost"
                     size="md"
-                />
+                /> */}
                 {/* Contenuto aggiuntivo per il contenitore destro */}
             </Flex>
         </Flex>

@@ -102,5 +102,8 @@ export function translatePathNames(path) {
         case "favorites": {
             return "Favorites"
         }
+        case "to-watch": {
+            return "To Watch List"
+        }
     }
 }

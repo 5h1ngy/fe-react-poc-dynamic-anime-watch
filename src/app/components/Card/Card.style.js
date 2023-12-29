@@ -3,6 +3,7 @@
  */
 export const cardStyle = {
     boxShadow: "0 4px 8px rgba(0, 0, 0, 0.5)",
+    background: "gray.800",
     maxW: '220px',
     borderWidth: "1px",
     borderRadius: "lg",

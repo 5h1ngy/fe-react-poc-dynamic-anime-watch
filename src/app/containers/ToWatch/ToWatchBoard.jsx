@@ -10,6 +10,7 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { randomColorScheme } from "app/shared/utils";
 import { parseStatusColor, parseStatusLabel, parseSeason } from "app/shared/utils";
 import Card from 'app/components/Card';
+import TypographyNeon from "app/components/TypographyNeon";
 
 
 // Reorder function for handling item reordering within the same list
@@ -60,7 +61,6 @@ function ToWatchBoard({ actions, state }) {
                 .filter(group => group.label === 'Da Guardare')
                 .forEach(group => group.content = initItems(toWatch))
 
-            console.log(initialState)
             return initialState
         })
     }, [])
@@ -117,103 +117,66 @@ function ToWatchBoard({ actions, state }) {
         }
     }
 
-    return (<Flex flexDirection={"row"} height={'100%'} marginTop={'20px'}>
-        {/* Drag and drop context for handling the drag events */}
+    return (<Flex flexDirection={"column"} minWidth={'100%'} marginTop={'20px'} alignItems={"center"}>
         <DragDropContext onDragEnd={onDragEnd}>
-            {/* Map through state to create Droppable lists */}
+
             {groups.map((group, groupIndex) => (
-                <Droppable key={groupIndex} droppableId={`${groupIndex}`}>
-                    {(provided, snapshot) => (
-                        <Flex flexDirection={"column"}
-                            ref={provided.innerRef}
+                <Droppable key={groupIndex} droppableId={`${groupIndex}`} direction="horizontal">
+                    {provided => (
+                        <>
+                            <TypographyNeon text={group.label} color={randomColorScheme()} />
+                            <Flex flexDirection={"row"}
+                                ref={provided.innerRef}
+                                {...provided.droppableProps}
 
-                            backgroundColor={'gray.900'}
-                            boxShadow={"0 4px 8px rgba(0, 0, 0, 0.5)"}
-                            borderRadius={"lg"}
-                            width={'250px'}
-                            height={'100%'}
-                            marginX={'7px'}
-                            padding={'10px'}
+                                backgroundColor={'gray.900'}
+                                boxShadow={"0 4px 8px rgba(0, 0, 0, 0.5)"}
+                                borderRadius={"lg"}
+                                width={'80vw'}
+                                minHeight={'500px'}
+                                marginY={'20px'}
+                                padding={'10px'}
+                                gap={'14px'}
+                                overflowX={"scroll"}
+                            >
 
-                            {...provided.droppableProps}
-                        >
-                            <h1>{group.label}</h1>
-                            {/* Map through items in the list to create Draggable items */}
-                            {group.content.map((item, itemIndex) => (
-                                <Draggable key={item.id} draggableId={item.id} index={itemIndex}>
-                                    {(provided, snapshot) => (
-                                        <Box
-                                            ref={provided.innerRef}
+                                {group.content.map((item, itemIndex) => (
+                                    <Draggable key={item.id} draggableId={item.id} index={itemIndex}>
+                                        {provided =>
+                                            <Box
+                                                ref={provided.innerRef}
+                                                style={{ ...provided.draggableProps.style }}
+                                                {...provided.draggableProps}
+                                                {...provided.dragHandleProps}
+                                            >
+                                                <Card
+                                                    picture={item.content.picture}
+                                                    badge={{
+                                                        content: parseStatusLabel(item.content.statuses),
+                                                        color: parseStatusColor(item.content.statuses)
+                                                    }}
+                                                    actions={[
+                                                        { label: 'Rimuovi dai preferiti', icon: 'FcDislike', onClick: () => handleToasRemove(item.content) },
+                                                    ]}
+                                                    title={item.content.title}
+                                                    content={[
+                                                        `Anno: ${parseSeason(item.content.animeSeason.season)} ${item.content.animeSeason.year}`,
+                                                        `${item.content.type} - Episodi: ${item.content.episodes}`,
+                                                        item.content.tags.map((tag, index) => <Badge key={index} mr="1" colorScheme={randomColorScheme()}>{tag}</Badge>)
+                                                    ]}
+                                                />
+                                            </Box>
+                                        }
+                                    </Draggable>
+                                ))}
+                                {provided.placeholder}
 
-                                            boxShadow={"0 4px 8px rgba(0, 0, 0, 0.5)"}
-                                            maxWidth={'220px'}
-                                            borderWidth={"1px"}
-                                            borderRadius={"lg"}
-                                            userSelect={"none"}
-                                            marginY={'10px'}
-                                            background={snapshot.isDragging ? "lightgreen" : "grey"}
-
-                                            style={{ ...provided.draggableProps.style }}
-                                            {...provided.draggableProps}
-                                            {...provided.dragHandleProps}
-                                        >
-                                            <Card
-                                                picture={item.content.picture}
-                                                badge={{
-                                                    content: parseStatusLabel(item.content.statuses),
-                                                    color: parseStatusColor(item.content.statuses)
-                                                }}
-                                                actions={[
-                                                    { label: 'Rimuovi dai preferiti', icon: 'FcDislike', onClick: () => handleToasRemove(item.content) },
-                                                ]}
-                                                title={item.content.title}
-                                                content={[
-                                                    `Anno: ${parseSeason(item.content.animeSeason.season)} ${item.content.animeSeason.year}`,
-                                                    `${item.content.type} - Episodi: ${item.content.episodes}`,
-                                                    item.content.tags.map((tag, index) => <Badge key={index} mr="1" colorScheme={randomColorScheme()}>{tag}</Badge>)
-                                                ]}
-                                            />
-                                        </Box>
-
-                                        // <Box
-                                        //     ref={provided.innerRef}
-
-                                        //     boxShadow={"0 4px 8px rgba(0, 0, 0, 0.5)"}
-                                        //     maxWidth={'250px'}
-                                        //     borderWidth={"1px"}
-                                        //     borderRadius={"lg"}
-                                        //     userSelect={"none"}
-                                        //     marginY={'10px'}
-                                        //     background={snapshot.isDragging ? "lightgreen" : "grey"}
-
-                                        //     style={{ ...provided.draggableProps.style }}
-                                        //     {...provided.draggableProps}
-                                        //     {...provided.dragHandleProps}
-                                        // >
-                                        //     <div style={{ display: "flex", justifyContent: "space-around" }}>
-                                        //         {item.content}
-                                        //         {/* Button to delete an item */}
-                                        //         <button
-                                        //             type="button"
-                                        //             onClick={() => {
-                                        //                 const newState = [...groups];
-                                        //                 newState[groupIndex].splice(itemIndex, 1);
-                                        //                 setGroups(newState.filter(group => group.length));
-                                        //             }}
-                                        //         >
-                                        //             delete
-                                        //         </button>
-                                        //     </div>
-                                        // </Box>
-
-                                    )}
-                                </Draggable>
-                            ))}
-                            {provided.placeholder}
-                        </Flex>
+                            </Flex>
+                        </>
                     )}
                 </Droppable>
             ))}
+
         </DragDropContext>
     </Flex>);
 }
