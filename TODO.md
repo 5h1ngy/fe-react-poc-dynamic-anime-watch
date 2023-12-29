@@ -6,15 +6,17 @@
 
 - [ ] Scalare la struttura per veere una futura implementazione dei generatori
 
-# route-favorites
+# route-to-watch
 
-- [x] no items page
+- [ ] multiple bugs about be microservices down
 
-- [x] loading system view
+- [ ] better loading view
 
-- [ ] card expansion
+- [ ] to watch modularization
 
-- [x] local storage save (dark theme)
+- [ ] sidebar subgroups
+
+- [ ] layout configurations
 
 # Todo
 
