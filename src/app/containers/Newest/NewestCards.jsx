@@ -13,7 +13,7 @@ function Newest({ actions, state }) {
     const { newest } = state;
     const toast = useToast()
 
-    function handleToasToWatch(anime) {
+    function handleToastToWatch(anime) {
         actions.toWatch.addToWatch({
             anime, callback: (status) => {
 
@@ -76,7 +76,7 @@ function Newest({ actions, state }) {
                     }}
                     actions={[
                         { label: 'Da guardare', icon: 'FcLike', onClick: () => handleToastFavorites(anime) },
-                        { label: 'Aggiungi ai preferiti', icon: 'FcInspection', onClick: () => handleToasToWatch(anime) },
+                        { label: 'Aggiungi ai preferiti', icon: 'FcInspection', onClick: () => handleToastToWatch(anime) },
                     ]}
                     title={anime.title}
                     content={[

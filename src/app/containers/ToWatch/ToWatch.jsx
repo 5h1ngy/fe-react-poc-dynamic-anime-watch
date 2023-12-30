@@ -11,13 +11,13 @@ import Board from './ToWatchBoard';
 const ToWatchBoard = Container(Board)
 
 function ToWatch({ state }) {
-    const { toWatch } = state;
+    const { toWatch, inProgress, complete } = state;
 
     useEffect(() => {
-        if(toWatch.length !== 0){
-            localStorage.setItem('toWatch_content', JSON.stringify(toWatch))
-        }
-    }, [toWatch])
+        localStorage.setItem('toWatch_content', JSON.stringify(toWatch))
+        localStorage.setItem('inProgress_content', JSON.stringify(inProgress))
+        localStorage.setItem('complete_content', JSON.stringify(complete))
+    }, [toWatch, inProgress, complete])
 
     return (<Flex
         direction={"column"}
@@ -25,7 +25,7 @@ function ToWatch({ state }) {
         padding={"30px"}
         height={'100%'}
     >
-        <NoItems condition={toWatch.length !== 0}>
+        <NoItems condition={toWatch.length !== 0 || inProgress.length !== 0 || complete.length !== 0}>
             <ToWatchBoard />
         </NoItems>
     </Flex>)
