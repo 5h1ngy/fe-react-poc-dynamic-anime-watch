@@ -5,10 +5,14 @@ import { Flex } from '@chakra-ui/react';
 
 import NoItems from 'app/components/NoItems.todo';
 
-import Container from './Container';
+import withContainer from 'app/hocs/withContainer';
 import Board from './ToWatchBoard';
 
-const ToWatchBoard = Container(Board)
+const ToWatchBoard = withContainer(
+    ['toWatch'],
+    ['toWatch'],
+    Board,
+);
 
 function ToWatch({ state }) {
     const { toWatch, inProgress, complete } = state;

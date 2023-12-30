@@ -1,4 +1,8 @@
-import Container from './Container';
+import withContainer from 'app/hocs/withContainer';
 import ToWatch from './ToWatch';
 
-export default Container(ToWatch);
+export default withContainer(
+    ['toWatch'],
+    ['toWatch'],
+    ToWatch,
+);

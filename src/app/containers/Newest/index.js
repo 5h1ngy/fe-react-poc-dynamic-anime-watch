@@ -1,4 +1,8 @@
-import Container from './Container';
+import withContainer from 'app/hocs/withContainer';
 import Newest from './Newest';
 
-export default Container(Newest);
+export default withContainer(
+    ['newest', 'favorites', 'toWatch'],
+    ['newest'],
+    Newest,
+);

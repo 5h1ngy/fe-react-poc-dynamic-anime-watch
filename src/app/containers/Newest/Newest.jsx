@@ -6,14 +6,28 @@ import { Flex } from '@chakra-ui/react';
 import Loader from 'app/components/Loader.todo';
 import NoItems from 'app/components/NoItems.todo';
 
-import Container from './Container';
+import withContainer from 'app/hocs/withContainer';
 import SearchForm from './NewestSearchForm';
 import Pagination from './NewestPagination';
 import Cards from './NewestCards';
 
-const NewestSearchForm = Container(SearchForm)
-const NewestPagination = Container(Pagination)
-const NewestCards = Container(Cards)
+const NewestSearchForm = withContainer(
+    ['newest', 'favorites', 'toWatch'],
+    ['newest'],
+    SearchForm,
+);
+
+const NewestPagination = withContainer(
+    ['newest', 'favorites', 'toWatch'],
+    ['newest'],
+    Pagination,
+);
+
+const NewestCards = withContainer(
+    ['newest', 'favorites', 'toWatch'],
+    ['newest'],
+    Cards,
+);
 
 function Newest({ actions, state }) {
     const { searchForm, pagination, loading, newest } = state;

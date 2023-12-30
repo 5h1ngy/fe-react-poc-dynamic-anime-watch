@@ -5,16 +5,20 @@ import { Flex } from '@chakra-ui/react';
 
 import NoItems from 'app/components/NoItems.todo';
 
-import Container from './Container';
+import withContainer from 'app/hocs/withContainer';
 import Cards from './FavoritesCards';
 
-const FavoritesCards = Container(Cards)
+const FavoritesCards = withContainer(
+    ['favorites'],
+    ['favorites'],
+    Cards,
+);
 
 function Favorites({ state }) {
     const { favorites } = state;
 
     useEffect(() => {
-        if(favorites.length !== 0){
+        if (favorites.length !== 0) {
             localStorage.setItem('favorites_content', JSON.stringify(favorites))
         }
     }, [favorites])

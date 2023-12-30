@@ -7,7 +7,7 @@ import { randomColorScheme } from "app/shared/utils";
 import { parseStatusColor, parseStatusLabel, parseSeason } from "app/shared/utils";
 import Card from 'app/components/Card';
 import TypographyNeon from "app/components/TypographyNeon";
-import { initGroups, initItems, move, reorder } from "./shared/utils";
+import { initGroups, initItems, move, reorder } from "app/shared/toWatch";
 
 /**
  * Component representing a board for tracking watched items.
