@@ -1,5 +1,7 @@
 # Arch fetaure
 
+- [ ] Risoluzione moduli, alias e webpack
+
 - [ ] Better JSconfig
 
 - [ ] Move container Obj inside HOC directory

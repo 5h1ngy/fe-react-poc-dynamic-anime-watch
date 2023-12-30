@@ -48,6 +48,8 @@ function resolveModule(resolveFn, filePath) {
 module.exports = {
   dotenv: resolveApp('env'),
   appPath: resolveApp('.'),
+  appEntry: resolveApp('src/app'),
+  appEntryData: resolveApp('src/data'),
   appBuild: resolveApp(APP_BUILD_PATH),
   appPublic: resolveApp('public'),
   appHtml: resolveApp('public/index.html'),

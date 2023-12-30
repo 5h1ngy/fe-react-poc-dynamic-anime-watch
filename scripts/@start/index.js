@@ -11,6 +11,14 @@ const { choosePort } = require('react-dev-utils/WebpackDevServerUtils');
 const { checkBrowsers } = require('react-dev-utils/browsersHelper');
 require('module-alias/register');
 
+// const moduleAlias = require('module-alias')
+// // Or multiple aliases
+// moduleAlias.addAliases({
+//   '@root'  : __dirname,
+//   '@client': __dirname + '/src/client',
+//   ...
+// })
+
 const paths = require('@shared/paths');
 const middleware = require('./middleware');
 const { HOST, IS_INTERACTIVE } = require('./utils');
