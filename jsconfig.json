@@ -1,8 +1,16 @@
 {
     "compilerOptions": {
-        "baseUrl": "src"
-    },
-    "include": [
-        "src"
-    ]
+        "baseUrl": ".",
+        "paths": {
+            "app/*": [
+                "./src/app/*"
+            ],
+            "@shared/*": [
+                "./shared/*"
+            ],
+            "@webpack/*": [
+                "./webpack/*"
+            ]
+        }
+    }
 }

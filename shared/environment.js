@@ -18,7 +18,7 @@ const DOT_ENV_FILES = [
   // poiché normalmente ci si aspetta che i test producano gli stessi
   // risultati per tutti
   NODE_ENV !== 'test' && path.resolve(paths.dotenv, `local`),
-  path.resolve(paths.dotenv, NODE_ENV),
+  path.resolve(paths.dotenv, `.env.${NODE_ENV}`),
 ].filter(Boolean);
 
 // Carica le variabili d'ambiente dai file .env*.
