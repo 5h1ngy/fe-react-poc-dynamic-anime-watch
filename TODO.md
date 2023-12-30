@@ -1,5 +1,7 @@
 # Arch fetaure
 
+- [ ] Better JSconfig
+
 - [ ] Move container Obj inside HOC directory
 
 - [ ] Split all graphics objects into files
