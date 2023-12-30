@@ -36,7 +36,7 @@ export default {
                 "icon": "FcLike"
             },
             {
-                "path": "",
+                "path": "/to-watch",
                 "label": "To Watch",
                 "icon": "FcTodoList",
                 // Sottocategorie dell'elemento "To Watch"

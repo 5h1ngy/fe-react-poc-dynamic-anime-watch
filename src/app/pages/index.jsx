@@ -5,6 +5,7 @@ import Template from 'app/layouts/Template';
 
 import newest from './newest';
 import favorites from './favorites';
+import toWatch from './toWatch';
 
 const routes = [
     {
@@ -16,6 +17,7 @@ const routes = [
         children: [
             newest,
             favorites,
+            toWatch,
         ]
     }
 ];
