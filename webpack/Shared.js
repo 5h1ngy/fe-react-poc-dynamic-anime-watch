@@ -11,7 +11,6 @@ class Shared {
     // Source maps are resource heavy and can cause out of memory issue for large source files.
     static shouldUseSourceMap;
 
-
     // Check if TypeScript is setup
     static useTypeScript;
 
