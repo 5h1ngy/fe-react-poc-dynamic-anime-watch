@@ -12,11 +12,10 @@ const { checkBrowsers } = require('react-dev-utils/browsersHelper');
 require('module-alias/register');
 
 // const moduleAlias = require('module-alias')
-// // Or multiple aliases
+// Or multiple aliases
 // moduleAlias.addAliases({
 //   '@root'  : __dirname,
 //   '@client': __dirname + '/src/client',
-//   ...
 // })
 
 const paths = require('@shared/paths');

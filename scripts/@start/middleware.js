@@ -9,8 +9,8 @@ const { createCompiler, prepareProxy, prepareUrls } = require('react-dev-utils/W
 const openBrowser = require('react-dev-utils/openBrowser');
 const semver = require('semver');
 
-const configFactory = require('../../webpack/webpack.config');
-const createDevServerConfig = require('../../webpack/webpackDevServer.config');
+const webpackFactory = require('../../webpack');
+const createDevServerConfig = require('../../webpack/_webpackDevServer.config');
 const paths = require('../../shared/paths');
 const getClientEnvironment = require('../../shared/environment');
 
@@ -24,7 +24,8 @@ function callbackRun(port) {
     // We have not found a port.
     if (port == null) return;
 
-    const config = configFactory('development');
+    const config = webpackFactory('development').compile();
+
     const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
     const appName = require(paths.appPackageJson).name;
     const useTypeScript = fs.existsSync(paths.appTsConfig);
@@ -64,7 +65,7 @@ function callbackRun(port) {
     }
 }
 
-function handleError() {
+function handleError(err) {
     if (err && err.message) console.log(err.message);
     process.exit(1);
 }

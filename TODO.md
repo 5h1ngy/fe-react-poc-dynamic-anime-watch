@@ -1,6 +1,6 @@
 # Arch fetaure
 
-- [ ] Risoluzione moduli, alias e webpack
+- [ ] Risoluzione moduli, alias e webpack, utilizzare le classi statiche
 
 - [ ] Better JSconfig
 
