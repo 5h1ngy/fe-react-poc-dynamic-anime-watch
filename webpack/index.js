@@ -7,7 +7,7 @@ const ignoredFiles = require('react-dev-utils/ignoredFiles');
 const redirectServedPath = require('react-dev-utils/redirectServedPathMiddleware');
 
 const paths = require('../shared/paths');
-const getHttpsConfig = require('../config/getHttpsConfig');
+const { getHttpsConfig } = require('./utils');
 
 const Shared = require('./Shared');
 const Output = require('./Output');
