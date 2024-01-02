@@ -3,11 +3,11 @@ import { Badge, Wrap, WrapItem } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { Flex, Box } from "@chakra-ui/react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { randomColorScheme } from "app/shared/utils";
-import { parseStatusColor, parseStatusLabel, parseSeason } from "app/shared/utils";
+import { randomColorScheme } from "lib-react-gcommon/utils";
+import { parseStatusColor, parseStatusLabel, parseSeason } from "lib-react-gcommon/utils";
 import Card from 'app/components/Card';
 import TypographyNeon from "app/components/TypographyNeon";
-import { initGroups, initItems, move, reorder } from "app/shared/toWatch";
+import { initGroups, initItems, move, reorder } from "lib-react-gcommon/dragging";
 
 /**
  * Component representing a board for tracking watched items.

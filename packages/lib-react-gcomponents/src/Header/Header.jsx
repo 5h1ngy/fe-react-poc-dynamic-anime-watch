@@ -9,7 +9,7 @@ import { ChevronRightIcon } from "@chakra-ui/icons";
 import { IconButton, useColorMode } from "@chakra-ui/react";
 import { MoonIcon, SunIcon } from "@chakra-ui/icons";
 
-import { translatePathNames } from "app/shared/utils";
+import { translatePathNames } from "lib-react-gcommon/utils";
 import TypographyNeon from "app/components/TypographyNeon";
 
 import {

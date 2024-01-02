@@ -1,4 +1,4 @@
-import withContainer from 'app/hocs/withContainer';
+import withContainer from 'packages/hocs/withContainer';
 import Favorites from './Favorites';
 
 export default withContainer(

@@ -8,7 +8,7 @@ import { Badge, IconButton } from '@chakra-ui/react';
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import * as icons from "react-icons/fc";
 
-import { generateRandomString } from "app/shared/utils";
+import { generateRandomString } from "lib-react-gcommon/utils";
 
 import Content from './Content.todo';
 

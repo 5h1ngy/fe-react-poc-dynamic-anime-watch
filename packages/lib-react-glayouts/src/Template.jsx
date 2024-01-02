@@ -5,8 +5,8 @@ import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 import { GridItem, Grid } from "@chakra-ui/react"
 
 // Import degli Higher Order Components (HOCs)
-import withConfig from 'app/hocs/withConfig'
-import withRouter from 'app/hocs/withRouter'
+import withConfig from 'packages/hocs/withConfig'
+import withRouter from 'packages/hocs/withRouter'
 
 // Import dei componenti personalizzati
 import Header from 'app/components/Header'

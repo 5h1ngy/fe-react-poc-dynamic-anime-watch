@@ -8,7 +8,7 @@ import { Wrap, WrapItem } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 import { FcUp, FcDown } from "react-icons/fc";
 
-import { generateRandomString } from "app/shared/utils";
+import { generateRandomString } from "lib-react-gcommon/utils";
 
 const simpleContentStyle = {
   marginY: '1px',

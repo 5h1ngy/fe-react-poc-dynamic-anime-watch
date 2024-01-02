@@ -5,7 +5,7 @@ import { Flex } from '@chakra-ui/react';
 
 import NoItems from 'app/components/NoItems.todo';
 
-import withContainer from 'app/hocs/withContainer';
+import withContainer from 'packages/hocs/withContainer';
 import Cards from './FavoritesCards';
 
 const FavoritesCards = withContainer(

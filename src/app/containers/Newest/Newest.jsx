@@ -6,7 +6,7 @@ import { Flex } from '@chakra-ui/react';
 import Loader from 'app/components/Loader.todo';
 import NoItems from 'app/components/NoItems.todo';
 
-import withContainer from 'app/hocs/withContainer';
+import withContainer from 'packages/hocs/withContainer';
 import SearchForm from './NewestSearchForm';
 import Pagination from './NewestPagination';
 import Cards from './NewestCards';

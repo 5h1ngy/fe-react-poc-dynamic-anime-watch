@@ -6,8 +6,8 @@ import { useToast } from '@chakra-ui/react';
 
 import Card from 'app/components/Card';
 
-import { randomColorScheme } from "app/shared/utils";
-import { parseStatusColor, parseStatusLabel, parseSeason } from "app/shared/utils";
+import { randomColorScheme } from "lib-react-gcommon/utils";
+import { parseStatusColor, parseStatusLabel, parseSeason } from "lib-react-gcommon/utils";
 
 function FavoritesCards({ actions, state }) {
     const { favorites } = state;

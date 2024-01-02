@@ -6,10 +6,10 @@ import { TagLabel, TagLeftIcon, Tag } from '@chakra-ui/react';
 import { Center, Heading } from '@chakra-ui/react';
 import { AddIcon, CloseIcon } from '@chakra-ui/icons';
 
-import { generateRandomString } from 'app/shared/utils';
+import { generateRandomString } from 'lib-react-gcommon/utils';
 
 import TypographyNeon from "app/components/TypographyNeon";
-import { randomColorScheme } from 'app/shared/utils';
+import { randomColorScheme } from 'lib-react-gcommon/utils';
 
 /**
  * Componente principale per il form di ricerca.

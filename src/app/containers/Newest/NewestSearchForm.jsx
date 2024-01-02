@@ -2,7 +2,7 @@ import _ from "lodash";
 import React, { useEffect, useState } from 'react';
 
 import SearchForm from 'app/components/SearchForm.todo';
-import { parseStatusLabel, parseTypesLabel } from "app/shared/utils";
+import { parseStatusLabel, parseTypesLabel } from "lib-react-gcommon/utils";
 
 function NewestSearchForm({ actions, state }) {
     const { searchForm, statuses, types } = state;
