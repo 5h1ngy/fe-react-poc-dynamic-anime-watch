@@ -74,6 +74,7 @@
     "jest": "^27.4.3",
     "jest-resolve": "^27.4.2",
     "jest-watch-typeahead": "^1.0.0",
+    "lib-react-gcommon": "./packages/lib-react-gcommon/",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "mini-css-extract-plugin": "^2.4.5",
