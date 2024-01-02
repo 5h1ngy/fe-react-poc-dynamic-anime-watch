@@ -23,7 +23,7 @@ const DOT_ENV_FILES = [
 
 // Carica le variabili d'ambiente dai file .env*.
 DOT_ENV_FILES.forEach(dotenvFile => {
-  if (fs.existsSync(dotenvFile)) require('dotenv-expand')(require('dotenv').config({ path: dotenvFile }));
+  if (fs.existsSync(dotenvFile)) require('dotenv-expand').expand(require('dotenv').config({ path: dotenvFile }));
 });
 
 // Supporta la risoluzione dei moduli in base a `NODE_PATH`.
