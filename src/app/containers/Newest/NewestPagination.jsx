@@ -1,7 +1,6 @@
-import _ from "lodash";
 import React from 'react';
 
-import Pagination from "app/components/Pagination.todo";
+import { Pagination } from "lib-react-gcomponents";
 
 function NewestPagination({ actions, state }) {
     const { pagination } = state;

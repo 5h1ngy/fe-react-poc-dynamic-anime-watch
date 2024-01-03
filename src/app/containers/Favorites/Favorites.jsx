@@ -1,11 +1,7 @@
-import _ from "lodash";
 import React, { useEffect } from 'react';
-
 import { Flex } from '@chakra-ui/react';
-
-import NoItems from 'app/components/NoItems.todo';
-
-import withContainer from 'packages/hocs/withContainer';
+import { NoItems } from 'lib-react-gcomponents';
+import withContainer from 'app/hocs/withContainer';
 import Cards from './FavoritesCards';
 
 const FavoritesCards = withContainer(

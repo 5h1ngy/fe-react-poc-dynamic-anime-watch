@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, Wrap, WrapItem } from '@chakra-ui/react';
+import { Badge } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { Flex, Box } from "@chakra-ui/react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { randomColorScheme } from "lib-react-gcommon/utils";
-import { parseStatusColor, parseStatusLabel, parseSeason } from "lib-react-gcommon/utils";
-import Card from 'app/components/Card';
-import TypographyNeon from "app/components/TypographyNeon";
-import { initGroups, initItems, move, reorder } from "lib-react-gcommon/dragging";
+import { parseStatusColor, parseStatusLabel, parseSeason, randomColorScheme } from "app/common";
+import { dragging } from "lib-react-gcommon";
+import { Card } from 'lib-react-gcomponents';
+import { TypographyNeon } from "lib-react-gcomponents";
 
 /**
  * Component representing a board for tracking watched items.
@@ -23,7 +22,7 @@ function ToWatchBoard({ actions, state }) {
     const toast = useToast();
 
     // State to manage the groups in the board
-    const [groups, setGroups] = useState(initGroups([
+    const [groups, setGroups] = useState(dragging.initGroups([
         { label: 'Da Guardare', labelColor: 'Pink' },
         { label: 'In Corso', labelColor: 'Yellow' },
         { label: 'Completati', labelColor: 'Cyan' },
@@ -34,14 +33,14 @@ function ToWatchBoard({ actions, state }) {
         setGroups(
             groups.map(group => ({
                 ...group,
-                content: group.label === 'Da Guardare' ? initItems(toWatch)
-                    : group.label === 'In Corso' ? initItems(inProgress)
-                        : group.label === 'Completati' ? initItems(complete)
+                content: group.label === 'Da Guardare' ? dragging.initItems(toWatch)
+                    : group.label === 'In Corso' ? dragging.initItems(inProgress)
+                        : group.label === 'Completati' ? dragging.initItems(complete)
                             : []
             }))
         );
 
-    }, [toWatch, inProgress, complete]);
+    }, [toWatch, inProgress, complete, groups]);
 
     /**
      * Handles the removal of an item from the watchlist and displays a toast notification.
@@ -97,13 +96,13 @@ function ToWatchBoard({ actions, state }) {
 
         // If the source and destination are the same group, reorder items within the group
         if (sourceIndex === destinationIndex) {
-            const items = reorder(groups[sourceIndex], source.index, destination.index);
+            const items = dragging.reorder(groups[sourceIndex], source.index, destination.index);
             const updatedGroups = [...groups];
             updatedGroups[sourceIndex] = items;
             setGroups(updatedGroups);
         } else {
             // If moving between groups, move the item and update the groups
-            const { result, removed } = move(groups[sourceIndex], groups[destinationIndex], source, destination);
+            const { result, removed } = dragging.move(groups[sourceIndex], groups[destinationIndex], source, destination);
             const updatedGroups = [...groups];
             updatedGroups[sourceIndex] = result[sourceIndex];
             updatedGroups[destinationIndex] = result[destinationIndex];

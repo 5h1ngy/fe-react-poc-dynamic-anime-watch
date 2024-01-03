@@ -1,8 +1,8 @@
 import _ from "lodash";
 import React, { useEffect, useState } from 'react';
 
-import SearchForm from 'app/components/SearchForm.todo';
-import { parseStatusLabel, parseTypesLabel } from "lib-react-gcommon/utils";
+import { SearchForm } from 'lib-react-gcomponents';
+import { parseStatusLabel, parseTypesLabel } from "app/common";
 
 function NewestSearchForm({ actions, state }) {
     const { searchForm, statuses, types } = state;
@@ -36,7 +36,7 @@ function NewestSearchForm({ actions, state }) {
                 }
             ])
         }
-    }, [statuses, types, searchForm]);
+    }, [statuses, types, searchForm, actions.newest]);
 
     return (<SearchForm tags={searchFormTags} />)
 }

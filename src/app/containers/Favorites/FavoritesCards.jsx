@@ -1,13 +1,10 @@
-import _ from "lodash";
 import React from 'react';
 
 import { Badge, Wrap, WrapItem } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
+import { Card } from 'lib-react-gcomponents';
 
-import Card from 'app/components/Card';
-
-import { randomColorScheme } from "lib-react-gcommon/utils";
-import { parseStatusColor, parseStatusLabel, parseSeason } from "lib-react-gcommon/utils";
+import { parseStatusColor, parseStatusLabel, parseSeason, randomColorScheme } from "app/common";
 
 function FavoritesCards({ actions, state }) {
     const { favorites } = state;

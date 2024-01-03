@@ -1,13 +1,11 @@
-import _ from "lodash";
 import React from 'react';
 
 import { Badge, Wrap, WrapItem } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 
-import Card from 'app/components/Card';
+import { Card } from 'lib-react-gcomponents';
 
-import { randomColorScheme } from "lib-react-gcommon/utils";
-import { parseStatusColor, parseStatusLabel, parseSeason } from "lib-react-gcommon/utils";
+import { parseStatusColor, parseStatusLabel, parseSeason, randomColorScheme } from "app/common";
 
 function Newest({ actions, state }) {
     const { newest } = state;

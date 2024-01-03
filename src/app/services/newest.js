@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import axios from 'axios';
 
 export async function getStatuses() {

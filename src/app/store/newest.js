@@ -99,8 +99,6 @@ const store = createSlice({
     }
 });
 
-const { actions, reducer } = store;
+export const { actions, reducer, name } = store;
 
 export const { setPagination, setType, setStatus } = actions;
-
-export default { reducer, name: store.name };
