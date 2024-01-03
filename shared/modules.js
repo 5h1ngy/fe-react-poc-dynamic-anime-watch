@@ -68,6 +68,9 @@ function getWebpackAliases(options = {}) {
       src: paths.appSrc,
       app: paths.appEntry,
       data: paths.appEntryData,
+      components: paths.appEntryPackageComponents,
+      hocs: paths.appEntryPackageHocs,
+      layouts: paths.appEntryPackageLayouts,
     };
   }
 }

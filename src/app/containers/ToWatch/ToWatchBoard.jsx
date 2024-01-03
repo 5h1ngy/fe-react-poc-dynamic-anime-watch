@@ -5,8 +5,8 @@ import { Flex, Box } from "@chakra-ui/react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { parseStatusColor, parseStatusLabel, parseSeason, randomColorScheme } from "app/common";
 import { dragging } from "lib-react-gcommon";
-import { Card } from 'lib-react-gcomponents';
-import { TypographyNeon } from "lib-react-gcomponents";
+import Card from 'lib-react-gcomponents/Card';
+import TypographyNeon from "lib-react-gcomponents/TypographyNeon";
 
 /**
  * Component representing a board for tracking watched items.

@@ -2,9 +2,8 @@ import React, { useEffect } from 'react';
 
 import { Flex } from '@chakra-ui/react';
 
-import { NoItems } from 'lib-react-gcomponents';
-
-import withContainer from 'app/hocs/withContainer';
+import NoItems from 'lib-react-gcomponents/NoItems';
+import withContainer from 'lib-react-ghocs/withContainer';
 import Board from './ToWatchBoard';
 
 const ToWatchBoard = withContainer(

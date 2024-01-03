@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { Flex } from '@chakra-ui/react';
 
 import { Loader, NoItems } from 'lib-react-gcomponents';
-import withContainer from 'app/hocs/withContainer';
+import withContainer from 'lib-react-ghocs/withContainer';
 
 import SearchForm from './NewestSearchForm';
 import Pagination from './NewestPagination';
