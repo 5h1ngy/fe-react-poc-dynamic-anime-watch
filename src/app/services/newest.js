@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import axios from 'axios';
 
 export async function getStatuses() {
@@ -11,7 +10,7 @@ export async function getStatuses() {
 
         return response.data
     } catch (error) {
-        console.error(error)
+        throw error
     }
 }
 
@@ -25,7 +24,7 @@ export async function getTypes() {
 
         return response.data
     } catch (error) {
-        console.error(error)
+        throw error
     }
 }
 
@@ -45,6 +44,6 @@ export async function getNewest(offset, size, types = [], statuses = []) {
 
         return response.data
     } catch (error) {
-        console.error(error)
+        throw error
     }
 }

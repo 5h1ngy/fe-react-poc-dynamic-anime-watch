@@ -1,4 +1,4 @@
-export default {
+const configuration = {
     // Configurazione per l'header della pagina
     "header": {
         // Indica se visualizzare il logo nell'header
@@ -36,7 +36,7 @@ export default {
                 "icon": "FcLike"
             },
             {
-                "path": "",
+                "path": "/to-watch",
                 "label": "To Watch",
                 "icon": "FcTodoList",
                 // Sottocategorie dell'elemento "To Watch"
@@ -60,4 +60,6 @@ export default {
             }
         ]
     }
-}
+};
+
+export default configuration;
