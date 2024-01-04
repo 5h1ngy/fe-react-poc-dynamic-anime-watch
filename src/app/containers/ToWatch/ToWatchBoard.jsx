@@ -41,7 +41,7 @@ function ToWatchBoard({ actions, state }) {
             }))
         );
 
-    }, [toWatch, inProgress, complete, groups]);
+    }, [toWatch, inProgress, complete]);
 
     /**
      * Handles the removal of an item from the watchlist and displays a toast notification.
