@@ -1,8 +1,8 @@
 import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
-import newest from "./newest.js";
-import favoirites from "./favorites.js";
-import toWatch from "./toWatch.js";
+import * as newest from "./newest.js";
+import * as favoirites from "./favorites.js";
+import * as toWatch from "./toWatch.js";
 
 const store = configureStore({
     reducer: combineReducers({

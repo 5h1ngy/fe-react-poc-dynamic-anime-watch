@@ -1,19 +1,32 @@
-import _ from "lodash";
 import React, { useEffect } from 'react';
 
 import { Flex } from '@chakra-ui/react';
 
-import Loader from 'app/components/Loader.todo';
-import NoItems from 'app/components/NoItems.todo';
+import Loader from 'gcomponents/LoaderTodo';
+import NoItems from 'gcomponents/NoItemsTodo';
+import withContainer from 'ghocs/withContainer';
 
-import Container from './Container';
 import SearchForm from './NewestSearchForm';
 import Pagination from './NewestPagination';
 import Cards from './NewestCards';
 
-const NewestSearchForm = Container(SearchForm)
-const NewestPagination = Container(Pagination)
-const NewestCards = Container(Cards)
+const NewestSearchForm = withContainer(
+    ['newest', 'favorites', 'toWatch'],
+    ['newest'],
+    SearchForm,
+);
+
+const NewestPagination = withContainer(
+    ['newest', 'favorites', 'toWatch'],
+    ['newest'],
+    Pagination,
+);
+
+const NewestCards = withContainer(
+    ['newest', 'favorites', 'toWatch'],
+    ['newest'],
+    Cards,
+);
 
 function Newest({ actions, state }) {
     const { searchForm, pagination, loading, newest } = state;
@@ -25,7 +38,7 @@ function Newest({ actions, state }) {
             statuses: searchForm.statuses,
             types: searchForm.types
         });
-    }, [pagination.offset, pagination.size, searchForm.statuses, searchForm.types]);
+    }, [pagination.offset, pagination.size, searchForm.statuses, searchForm.types, actions.newest]);
 
     return (<Flex
         direction={"column"}

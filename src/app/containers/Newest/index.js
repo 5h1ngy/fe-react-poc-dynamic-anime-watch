@@ -1,4 +1,8 @@
-import Container from './Container';
+import withContainer from 'ghocs/withContainer';
 import Newest from './Newest';
 
-export default Container(Newest);
+export default withContainer(
+    ['newest', 'favorites', 'toWatch'],
+    ['newest'],
+    Newest,
+);

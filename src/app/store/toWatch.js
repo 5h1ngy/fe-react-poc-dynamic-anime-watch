@@ -1,9 +1,20 @@
 import _ from 'lodash';
 import { createSlice } from "@reduxjs/toolkit";
 
+const toWatchContent = localStorage.getItem('toWatch_content');
+const inProgressContent = localStorage.getItem('inProgress_content');
+const completeContent = localStorage.getItem('complete_content');
+
 const initialState = {
-    toWatch: [],
-    pagination: { size: 50, offset: 1, total: 0 }
+    toWatch: toWatchContent !== null
+        ? JSON.parse(toWatchContent)
+        : [],
+    inProgress: inProgressContent !== null
+        ? JSON.parse(inProgressContent)
+        : [],
+    complete: completeContent !== null
+        ? JSON.parse(completeContent)
+        : [],
 }
 
 const store = createSlice({
@@ -11,18 +22,50 @@ const store = createSlice({
     initialState,
     reducers: (create) => ({
         addToWatch: create.reducer((state, action) => {
-            if (_.cloneDeep(state.toWatch).filter(anime => _.isEqual(anime, action.payload)).length === 0) {
-                state.toWatch.push(action.payload)
+            if (_.cloneDeep(state.toWatch).filter(anime => _.isEqual(anime, action.payload.anime)).length === 0) {
+                state.toWatch.push(action.payload.anime)
+                if (action.payload?.callback) action.payload.callback(true)
+            } else {
+                if (action.payload?.callback) action.payload.callback(false)
             }
         }),
-        setPagination: create.reducer((state, action) => {
-            state.pagination = { ...action.payload }
+        removeToWatch: create.reducer((state, action) => {
+            state.toWatch = _.cloneDeep(state.toWatch).filter(anime => !_.isEqual(anime, action.payload.anime));
+            if (action.payload?.callback) action.payload.callback(true)
+        }),
+
+        addInProgress: create.reducer((state, action) => {
+            if (_.cloneDeep(state.inProgress).filter(anime => _.isEqual(anime, action.payload.anime)).length === 0) {
+                state.inProgress.push(action.payload.anime)
+                if (action.payload?.callback) action.payload.callback(true)
+            } else {
+                if (action.payload?.callback) action.payload.callback(false)
+            }
+        }),
+        removeInProgress: create.reducer((state, action) => {
+            state.inProgress = _.cloneDeep(state.inProgress).filter(anime => !_.isEqual(anime, action.payload.anime));
+            if (action.payload?.callback) action.payload.callback(true)
+        }),
+
+        addComplete: create.reducer((state, action) => {
+            if (_.cloneDeep(state.complete).filter(anime => _.isEqual(anime, action.payload.anime)).length === 0) {
+                state.complete.push(action.payload.anime)
+                if (action.payload?.callback) action.payload.callback(true)
+            } else {
+                if (action.payload?.callback) action.payload.callback(false)
+            }
+        }),
+        removeComplete: create.reducer((state, action) => {
+            state.complete = _.cloneDeep(state.complete).filter(anime => !_.isEqual(anime, action.payload.anime));
+            if (action.payload?.callback) action.payload.callback(true)
         }),
     })
 });
 
-const { actions, reducer } = store;
+export const { actions, reducer, name } = store;
 
-export const { addToWatch, setPagination } = actions;
-
-export default { reducer, name: store.name };
+export const {
+    addToWatch, removeToWatch,
+    addInProgress, removeInProgress,
+    addComplete, removeComplete
+} = actions;

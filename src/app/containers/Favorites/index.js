@@ -1,4 +1,8 @@
-import Container from './Container';
+import withContainer from 'ghocs/withContainer';
 import Favorites from './Favorites';
 
-export default Container(Favorites);
+export default withContainer(
+    ['favorites'],
+    ['favorites'],
+    Favorites,
+);

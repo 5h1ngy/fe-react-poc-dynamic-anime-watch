@@ -7,7 +7,6 @@ const initialState = {
     favorites: favoritesContent !== null
         ? JSON.parse(favoritesContent)
         : [],
-    pagination: { size: 50, offset: 1, total: 0 }
 }
 
 const store = createSlice({
@@ -28,14 +27,9 @@ const store = createSlice({
 
             action.payload.callback(true)
         }),
-        setPagination: create.reducer((state, action) => {
-            state.pagination = { ...action.payload.anime }
-        }),
     })
 });
 
-const { actions, reducer } = store;
+export const { actions, reducer, name } = store;
 
 export const { addFavorite, removeFavorite, setPagination } = actions;
-
-export default { reducer, name: store.name };

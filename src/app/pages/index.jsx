@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import template from 'data/layout.template';
-import Template from 'app/layouts/Template';
+import Template from 'glayouts/Template';
 
 import newest from './newest';
 import favorites from './favorites';
+import toWatch from './toWatch';
 
 const routes = [
     {
@@ -16,6 +17,7 @@ const routes = [
         children: [
             newest,
             favorites,
+            toWatch,
         ]
     }
 ];

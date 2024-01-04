@@ -1,16 +1,26 @@
 # Arch fetaure
 
+- [ ] Risoluzione moduli, alias e webpack, utilizzare le classi statiche
+
+- [ ] Better JSconfig
+
+- [ ] Move container Obj inside HOC directory
+
 - [ ] Split all graphics objects into files
 
-# route-favorites
+- [ ] Scalare la struttura per veere una futura implementazione dei generatori
 
-- [x] no items page
+# route-to-watch
 
-- [x] loading system view
+- [ ] multiple bugs about be microservices down
 
-- [ ] card expansion
+- [ ] better loading view
 
-- [x] local storage save (dark theme)
+- [ ] to watch modularization
+
+- [ ] sidebar subgroups
+
+- [ ] layout configurations
 
 # Todo
 
