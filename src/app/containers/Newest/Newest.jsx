@@ -1,12 +1,11 @@
-import _ from "lodash";
 import React, { useEffect } from 'react';
 
 import { Flex } from '@chakra-ui/react';
 
-import Loader from 'app/components/Loader.todo';
-import NoItems from 'app/components/NoItems.todo';
+import Loader from 'gcomponents/LoaderTodo';
+import NoItems from 'gcomponents/NoItemsTodo';
+import withContainer from 'ghocs/withContainer';
 
-import withContainer from 'app/hocs/withContainer';
 import SearchForm from './NewestSearchForm';
 import Pagination from './NewestPagination';
 import Cards from './NewestCards';
@@ -39,7 +38,7 @@ function Newest({ actions, state }) {
             statuses: searchForm.statuses,
             types: searchForm.types
         });
-    }, [pagination.offset, pagination.size, searchForm.statuses, searchForm.types]);
+    }, [pagination.offset, pagination.size, searchForm.statuses, searchForm.types, actions.newest]);
 
     return (<Flex
         direction={"column"}

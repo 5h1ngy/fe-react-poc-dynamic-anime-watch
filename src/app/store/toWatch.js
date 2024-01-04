@@ -62,12 +62,10 @@ const store = createSlice({
     })
 });
 
-const { actions, reducer } = store;
+export const { actions, reducer, name } = store;
 
 export const {
     addToWatch, removeToWatch,
     addInProgress, removeInProgress,
     addComplete, removeComplete
 } = actions;
-
-export default { reducer, name: store.name };

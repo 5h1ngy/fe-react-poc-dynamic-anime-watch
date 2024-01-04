@@ -1,8 +1,31 @@
 {
     "compilerOptions": {
-        "baseUrl": "src"
-    },
-    "include": [
-        "src"
-    ]
+        "baseUrl": ".",
+        "paths": {
+            "app/*": [
+                "./src/app/*"
+            ],
+            "data/*": [
+                "./src/data/*"
+            ],
+            "gcommon/*": [
+                "./src/packages/common/*"
+            ],
+            "gcomponents/*": [
+                "./src/packages/components/*"
+            ],
+            "ghocs/*": [
+                "./src/packages/hocs/*"
+            ],
+            "glayouts/*": [
+                "./src/packages/layouts/*"
+            ],
+            "@shared/*": [
+                "./shared/*"
+            ],
+            "@webpack/*": [
+                "./webpack/*"
+            ]
+        }
+    }
 }

@@ -1,4 +1,4 @@
-import withContainer from 'app/hocs/withContainer';
+import withContainer from 'ghocs/withContainer';
 import ToWatch from './ToWatch';
 
 export default withContainer(

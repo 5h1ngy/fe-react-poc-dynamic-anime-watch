@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, Wrap, WrapItem } from '@chakra-ui/react';
+import { Badge } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
 import { Flex, Box } from "@chakra-ui/react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { randomColorScheme } from "app/shared/utils";
-import { parseStatusColor, parseStatusLabel, parseSeason } from "app/shared/utils";
-import Card from 'app/components/Card';
-import TypographyNeon from "app/components/TypographyNeon";
-import { initGroups, initItems, move, reorder } from "app/shared/toWatch";
+import { parseStatusColor, parseStatusLabel, parseSeason, randomColorScheme } from "app/common";
+
+import { initGroups, initItems, move, reorder } from "gcommon/dragging";
+import Card from 'gcomponents/Card';
+import TypographyNeon from "gcomponents/TypographyNeon";
 
 /**
  * Component representing a board for tracking watched items.
@@ -41,7 +41,7 @@ function ToWatchBoard({ actions, state }) {
             }))
         );
 
-    }, [toWatch, inProgress, complete]);
+    }, [toWatch, inProgress, complete, groups]);
 
     /**
      * Handles the removal of an item from the watchlist and displays a toast notification.

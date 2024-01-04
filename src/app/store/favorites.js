@@ -30,8 +30,6 @@ const store = createSlice({
     })
 });
 
-const { actions, reducer } = store;
+export const { actions, reducer, name } = store;
 
 export const { addFavorite, removeFavorite, setPagination } = actions;
-
-export default { reducer, name: store.name };
