@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Badge, Wrap, WrapItem } from '@chakra-ui/react';
 import { useToast } from '@chakra-ui/react';
-import Card from 'lib-react-gcomponents/Card';
+import Card from 'gcomponents/Card';
 
 import { parseStatusColor, parseStatusLabel, parseSeason, randomColorScheme } from "app/common";
 

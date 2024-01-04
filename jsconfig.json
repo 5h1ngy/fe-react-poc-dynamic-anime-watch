@@ -8,13 +8,16 @@
             "data/*": [
                 "./src/data/*"
             ],
-            "lib-react-gcomponents/*": [
+            "gcommon/*": [
+                "./src/packages/common/*"
+            ],
+            "gcomponents/*": [
                 "./src/packages/components/*"
             ],
-            "lib-react-ghocs/*": [
+            "ghocs/*": [
                 "./src/packages/hocs/*"
             ],
-            "lib-react-glayouts/*": [
+            "glayouts/*": [
                 "./src/packages/layouts/*"
             ],
             "@shared/*": [

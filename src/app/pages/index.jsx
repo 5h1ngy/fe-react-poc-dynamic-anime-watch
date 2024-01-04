@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom';
 
 import template from 'data/layout.template';
-import Template from 'lib-react-glayouts/Template';
+import Template from 'glayouts/Template';
 
 import newest from './newest';
 import favorites from './favorites';

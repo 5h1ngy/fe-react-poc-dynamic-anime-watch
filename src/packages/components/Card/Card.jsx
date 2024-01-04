@@ -1,4 +1,3 @@
-import _ from "lodash";
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,7 +7,7 @@ import { Badge, IconButton } from '@chakra-ui/react';
 import { Wrap, WrapItem } from '@chakra-ui/react';
 import * as icons from "react-icons/fc";
 
-import { generateRandomString } from "lib-react-gcommon";
+import { generateRandomString } from "gcommon/utils";
 
 import Content from './ContentTodo';
 

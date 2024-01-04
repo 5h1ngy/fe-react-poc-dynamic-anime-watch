@@ -5,9 +5,10 @@ import { Wrap, WrapItem, useBreakpointValue } from '@chakra-ui/react';
 import { TagLabel, TagLeftIcon, Tag } from '@chakra-ui/react';
 import { Center, Heading } from '@chakra-ui/react';
 import { AddIcon, CloseIcon } from '@chakra-ui/icons';
+import { generateRandomString } from 'gcommon/utils';
 
 import TypographyNeon from "./TypographyNeon";
-import { generateRandomString } from 'lib-react-gcommon';
+import { randomColorScheme } from 'app/common';
 
 /**
  * Componente principale per il form di ricerca.
@@ -15,7 +16,7 @@ import { generateRandomString } from 'lib-react-gcommon';
  * @param {Array} props.tags - Un array di categorie con etichette e valori.
  */
 const SearchForm = ({ tags }) => {
-    const [wrapDirection, setWrapDirection] = useState("row");
+    const [_wrapDirection, setWrapDirection] = useState("row");
 
     // Usiamo useBreakpointValue per ottenere il valore in base alla dimensione dello schermo
     const breakpointDirection = useBreakpointValue({ base: "column", md: "row" });

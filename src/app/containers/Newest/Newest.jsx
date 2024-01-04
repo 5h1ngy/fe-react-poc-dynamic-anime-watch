@@ -2,8 +2,9 @@ import React, { useEffect } from 'react';
 
 import { Flex } from '@chakra-ui/react';
 
-import { Loader, NoItems } from 'lib-react-gcomponents';
-import withContainer from 'lib-react-ghocs/withContainer';
+import Loader from 'gcomponents/LoaderTodo';
+import NoItems from 'gcomponents/NoItemsTodo';
+import withContainer from 'ghocs/withContainer';
 
 import SearchForm from './NewestSearchForm';
 import Pagination from './NewestPagination';

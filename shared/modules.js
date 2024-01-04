@@ -67,10 +67,11 @@ function getWebpackAliases(options = {}) {
     return {
       src: paths.appSrc,
       app: paths.appEntry,
-      data: paths.appEntryData,
-      components: paths.appEntryPackageComponents,
-      hocs: paths.appEntryPackageHocs,
-      layouts: paths.appEntryPackageLayouts,
+      data: paths.appData,
+      gcommon: paths.appPackageCommon,
+      gcomponents: paths.appPackageComponents,
+      ghocs: paths.appPackageHocs,
+      glayouts: paths.appPackageLayouts,
     };
   }
 }

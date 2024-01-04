@@ -1,5 +1,3 @@
-import _ from "lodash";
-
 const NoItems = ({ condition, children }) => (
     condition
         ? children

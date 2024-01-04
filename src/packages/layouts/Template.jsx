@@ -5,12 +5,13 @@ import { useDisclosure, useMediaQuery } from "@chakra-ui/react";
 import { GridItem, Grid } from "@chakra-ui/react"
 
 // Import degli Higher Order Components (HOCs)
-import withConfig from 'app/hocs/withConfig'
-import withRouter from 'app/hocs/withRouter'
+import withConfig from 'ghocs/withConfig'
+import withRouter from 'ghocs/withRouter'
 import { translatePathNames } from 'app/common'
 
 // Import dei componenti personalizzati
-import { Header, Sidebar } from 'lib-react-gcomponents';
+import Header from 'gcomponents/Header';
+import Sidebar from 'gcomponents/Sidebar';
 
 // Stili per il componente principale (root)
 const rootStyle = {

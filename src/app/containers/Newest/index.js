@@ -1,4 +1,4 @@
-import withContainer from 'lib-react-ghocs/withContainer';
+import withContainer from 'ghocs/withContainer';
 import Newest from './Newest';
 
 export default withContainer(

@@ -1,6 +1,5 @@
 import _ from "lodash";
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import { Flex, Collapse } from '@chakra-ui/react';
 import { Text, IconButton } from '@chakra-ui/react';
@@ -8,7 +7,7 @@ import { Wrap, WrapItem } from '@chakra-ui/react';
 import { useDisclosure } from '@chakra-ui/react';
 import { FcUp, FcDown } from "react-icons/fc";
 
-import { generateRandomString } from "lib-react-gcommon";
+import { generateRandomString } from "gcommon/utils";
 
 const simpleContentStyle = {
   marginY: '1px',

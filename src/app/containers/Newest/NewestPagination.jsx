@@ -1,5 +1,5 @@
 import React from 'react';
-import Pagination from "lib-react-gcomponents/PaginationTodo";
+import Pagination from "gcomponents/PaginationTodo";
 
 function NewestPagination({ actions, state }) {
     const { pagination } = state;
