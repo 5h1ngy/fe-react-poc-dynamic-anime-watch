@@ -12,7 +12,7 @@
                 "./src/packages/common/*"
             ],
             "gcomponents/*": [
-                "./src/packages/components/*"
+                "./src/packages/components/src/components/*"
             ],
             "ghocs/*": [
                 "./src/packages/hocs/*"

@@ -51,7 +51,7 @@ module.exports = {
   appEntry: resolveApp('src/app'),
   appData: resolveApp('src/data'),
   appPackageCommon: resolveApp('src/packages/common'),
-  appPackageComponents: resolveApp('src/packages/components'),
+  appPackageComponents: resolveApp('src/packages/components/src/components'),
   appPackageHocs: resolveApp('src/packages/hocs'),
   appPackageLayouts: resolveApp('src/packages/layouts'),
   appBuild: resolveApp(APP_BUILD_PATH),
