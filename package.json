@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "clean": "rm -rfdv node_modules/ yarn.lock build/ .yarn-cache/ && cd ./src/packages/components && yarn clean",
-    "start": "node scripts/@start",
+    "start:dev": "node scripts/@start",
     "start-storybook": "cd ./src/packages/components && yarn storybook",
     "build": "node scripts/@build",
     "build-storybook": "cd ./src/packages/components && yarn build-storybook",
